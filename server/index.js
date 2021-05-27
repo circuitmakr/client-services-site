@@ -36,11 +36,9 @@ app.get('/auth/logout', authCtrl.logout)
 app.get('/auth/user', authCtrl.getUser)
 
 //client
-app.post('/api/client/message/:therapist_id')
-app.get('api/client/message')
 app.get('/api/client/test')
 app.post('/api/client/test/:quiz_question_id, :quiz_answer')
-app.put('api/assignments/status/:assignment_id')
+app.put('api/client/test/:quiz_question_id')
 app.delete('api/client/appointments/:appointment_id')
 
 //provider
