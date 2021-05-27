@@ -21,11 +21,10 @@ function LineChart() {
         data: [4, 5, 0, 1, 4, 3],
       }
     ]};
-
  const options = {
   
-    legend:{
-        display: true
+    labels:{
+        weight: 'bold'
     },
    
     title: {
@@ -43,10 +42,10 @@ function LineChart() {
             },
     },
     maintainAspectRatio: false
-};
+ };
   return (
     <div className="chart">
-      <Line data={data} options={options} />
+      <Line options={options} data={data} />
     </div>
   );
 }
