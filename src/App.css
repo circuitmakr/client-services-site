@@ -1,6 +1,26 @@
+*,::after,::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .chart{
   margin-left: auto;
   margin-right: auto;
   width: 50vw;
   height: 30vh;
+}
+.progress{
+  margin-left: auto;
+  margin-right: auto;
+}
+.sec{
+  display: flex;
+  flex-direction: column;
+ padding: 1em;
+  width: 55vw;
+  height: 40vh;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid red;
+  border-radius: 1em;
 }
