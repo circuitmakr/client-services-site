@@ -66,6 +66,10 @@ CREATE TABLE tbl_client_to_provider (
   provider_id INT REFERENCES tbl_provider(provider_id)
 );
 
+--DELETE TABLE DATA
+DELETE FROM tbl_provider 
+WHERE name IS NOT NULL;
+
 --QUIZ SEED
 
 INSERT INTO tbl_quiz
@@ -104,10 +108,10 @@ VALUES
 
 INSERT INTO tbl_client (name, password, primary_service, gender, insured) 
 VALUES 
-('Jewelle Trippitt', '5OEXcnU', 'depression', 'Polygender', true),
+('Jewelle Trippitt', '5OEXcnU', 'depression', 'Male', true),
 ('Benedikt Oliveira', 'scyeFWpNwtWf', 'depression', 'Female', true),
 ('Karon Master', 'S3OXls', 'loneliness', 'Non-binary', false),
-('Dorian Sheward', '7Hj0z4', 'depression', 'Polygender', true),
+('Dorian Sheward', '7Hj0z4', 'depression', 'Male', true),
 ('Florance Cess', 'wkud1niok', 'anxiety', 'Polygender', true),
 ('Verney Laugheran', '7BZMK7Vd6e3y', 'depression', 'Non-binary', false),
 ('Dyann Kummerlowe', 'eiqTO3CAdb', 'loneliness', 'Bigender', true),
@@ -123,10 +127,10 @@ VALUES
 ('Asher Lampbrecht', 'PQbcUlyJ', 'anxiety', 'Non-binary'),
 ('Siobhan Washington', 'edv3gSbtI', 'anxiety', 'Non-binary'),
 ('Loydie Ellaman', 'lSGvmzRyfs7', 'loneliness', 'Polygender'),
-('Marguerite Huffey', 'PxVg4O', 'loneliness', 'Female'),
+('Marguerite Huffey', 'PxVg4O', 'loneliness', 'Male'),
 ('Norby Kovnot', 'IYbrInm7', 'depression', 'Genderfluid'),
 ('Padraic Mainson', 'YTwIXz','anxiety', 'Bigender'),
-('Elizabet Maypes', 'C2NVpzCJ', 'depression', 'Genderqueer'),
+('Elizabet Maypes', 'C2NVpzCJ', 'depression', 'Male'),
 ('Raphael Gladeche', 'qjXVWpeGI2Y', 'anxiety', 'Female'),
 ('Leo Rowney', 'tmG2iw', 'depression', 'Female'),
 ('Mandy Chanson', 'tV1uevux', 'anxiety', 'Genderqueer');
@@ -135,12 +139,12 @@ VALUES
 INSERT INTO tbl_answers 
 (quiz_id, client_id, question_id, q_date, score, answer) 
 VALUES 
-(1, 5, 1, '5/27/2021', 2, 1),
+(1, 5, 1, '5/27/2021', 1, 1),
 (1, 5, 2, '5/27/2021', 1, 1),
 (1, 5, 3, '5/27/2021', 3, 1),
 (1, 5, 4, '5/27/2021', 2, 2),
 (1, 5, 5, '5/27/2021', 0, 1),
-(1, 5, 6, '5/27/2021', 1, 4),
+(1, 5, 6, '5/27/2021', 4, 4),
 (1, 5, 7, '5/27/2021', 0, 4),
 (1, 5, 8, '5/27/2021', 1, 1),
 (1, 5, 9, '5/27/2021', 0, 2),
@@ -151,29 +155,29 @@ VALUES
 (1, 5, 14, '5/27/2021', 2, 3),
 (1, 5, 15, '5/27/2021', 0, 1),
 (1, 5, 16, '5/27/2021', 3, 4),
-(1, 5, 1, '5/10/2021', 2, 1),
-(1, 5, 2, '5/10/2021', 1, 1),
-(1, 5, 3, '5/10/2021', 3, 1),
-(1, 5, 4, '5/10/2021', 2, 2),
-(1, 5, 5, '5/10/2021', 0, 1),
-(1, 5, 6, '5/10/2021', 1, 4),
-(1, 5, 7, '5/10/2021', 0, 4),
-(1, 5, 8, '5/10/2021', 1, 1),
-(1, 5, 9, '5/10/2021', 0, 2),
-(1, 5, 10, '5/10/2021', 3, 3),
-(1, 5, 11, '5/10/2021', 1, 2),
-(1, 5, 12, '5/10/2021', 1, 3),
-(1, 5, 13, '5/10/2021', 3, 1),
-(1, 5, 14, '5/10/2021', 2, 3),
-(1, 5, 15, '5/10/2021', 0, 1),
-(1, 5, 16, '5/10/2021', 3, 4),
+(1, 6, 1, '5/10/2021', 2, 1),
+(1, 6, 2, '5/10/2021', 1, 1),
+(1, 6, 3, '5/10/2021', 3, 1),
+(1, 6, 4, '5/10/2021', 2, 2),
+(1, 6, 5, '5/10/2021', 0, 1),
+(1, 6, 6, '5/10/2021', 0, 4),
+(1, 6, 7, '5/10/2021', 0, 4),
+(1, 6, 8, '5/10/2021', 1, 1),
+(1, 6, 9, '5/10/2021', 0, 2),
+(1, 6, 10, '5/10/2021', 3, 3),
+(1, 6, 11, '5/10/2021', 1, 2),
+(1, 6, 12, '5/10/2021', 1, 3),
+(1, 6, 13, '5/10/2021', 3, 1),
+(1, 6, 14, '5/10/2021', 1, 3),
+(1, 6, 15, '5/10/2021', 0, 1),
+(1, 6, 16, '5/10/2021', 3, 4),
 (1, 5, 1, '5/03/2021', 2, 1),
-(1, 5, 2, '5/03/2021', 1, 1),
+(1, 5, 2, '5/03/2021', 4, 1),
 (1, 5, 3, '5/03/2021', 3, 1),
-(1, 5, 4, '5/03/2021', 2, 2),
-(1, 5, 5, '5/03/2021', 0, 1),
+(1, 5, 4, '5/03/2021', 4, 2),
+(1, 5, 5, '5/03/2021', 4, 1),
 (1, 5, 6, '5/03/2021', 1, 4),
-(1, 5, 7, '5/03/2021', 0, 4),
+(1, 5, 7, '5/03/2021', 4, 4),
 (1, 5, 8, '5/03/2021', 1, 1),
 (1, 5, 9, '5/03/2021', 0, 2),
 (1, 5, 10, '5/03/2021', 3, 3),
@@ -181,5 +185,5 @@ VALUES
 (1, 5, 12, '5/03/2021', 1, 3),
 (1, 5, 13, '5/03/2021', 3, 1),
 (1, 5, 14, '5/03/2021', 2, 3),
-(1, 5, 15, '5/03/2021', 0, 1),
+(1, 5, 15, '5/03/2021', 4, 1),
 (1, 5, 16, '5/03/2021', 3, 4);
