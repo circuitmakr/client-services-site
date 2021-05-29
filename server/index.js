@@ -38,9 +38,9 @@ app.get('/auth/user', authCtrl.getUser)
 //client
 app.get('/api/client/quiz', clientCtrl.takeQuiz)
 app.put('/api/client/quiz/update',clientCtrl.changeAnswer)
-app.post('/api/client/provider',clientCtrl.addProvider)
+app.post('/api/client/provider/:client_id',clientCtrl.addProvider)
 app.post('/api/client/provider/:gender,:primary_service',clientCtrl.getProviders)
-app.delete('/api/client/appointments/:appointment_id')
+app.delete('/api/client/provider/:client_id',clientCtrl.deleteProvider)
 
 //provider
 app.post('/api/client/message/:client_id')

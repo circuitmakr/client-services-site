@@ -29,6 +29,7 @@ module.exports ={
     addProvider: (req,res)=>{
         const db = req.app.get('db')
         const {client_id, provider_id} = req.body
+        console.log(client_id)
         db.c_client.add_provider_to_client(client_id,provider_id)
         .then((pairing)=>{
             res.status(200).send(pairing)
@@ -47,7 +48,19 @@ module.exports ={
         })
     },
     deleteProvider: (req,res)=>{
-        
+        const db = req.app.get('db')
+        const{client_id} = req.params
+        console.log(client_id)
+        const{provider_id}=req.body
+        console.log(provider_id)
+        db.c_client.remove_provider(client_id, provider_id)
+        .then((providers)=>{
+            res.status(200).send(providers)
+        }).catch((err)=>{
+            res.status(404).send('Provider not found.')
+        })
     },
-    submitQuiz: (req,res)=>{}
+    submitQuiz: (req,res)=>{
+        
+    }
 }
