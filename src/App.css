@@ -3,24 +3,88 @@
   padding: 0;
   box-sizing: border-box;
 }
-.chart{
-  margin-left: auto;
-  margin-right: auto;
-  width: 50vw;
-  height: 30vh;
+body{
+  background-image: url('./assets/danielle-macinnes-IuLgi9PWETU-unsplash.jpg') ;
+  background-repeat: no-repeat;
+  background-size: auto 100vh;
+  background-position: right top;
 }
-.progress{
-  margin-left: auto;
-  margin-right: auto;
+h4{
+  font-size: 12px;
 }
-.sec{
+.main_container{
+  background-color: #01BAEF;
+  width: 30rem;
+  padding: 0.5rem;
+  height: 100vh;
   display: flex;
   flex-direction: column;
- padding: 1em;
-  width: 55vw;
-  height: 40vh;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-right: auto;
+  align-content: center;
+  box-shadow: 0px 2px 5px 4px rgb(179, 179, 179);
+  color: whitesmoke;
+}
+.header{
+  margin-top: 2rem;
+}
+.account_type{
+  flex-direction: row;
+}
+.opt_select{
+  float: left;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+  font-size: 100px;
+  border-radius: 10px 10px;
+}
+.opt_select:hover{
+  background-color: #0B4F6C;
+  color: #f5f5f5;
+}
+.opt_select:checked{
+  background-color: #efefef;
+  color: "#3b3b3b";
+}
+.account_type{
+  margin-top: 1em;
+  height: 250px;
+  width: 100%;
+}
+.login_container{
+  justify-content: center;
+  width: 400px;
+  margin-top:1rem;
+  margin-left:auto;
+  margin-right: auto;
+}
+.btn_container{
+  width: 200px;
+  margin-top:1em;
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid red;
-  border-radius: 1em;
+}
+.login_spacer{
+  height:0.5em;
+  width:100em;
+}
+
+.btn_login{
+  width: 125px;
+  height: 40px;
+  border-radius: 10px 10px;
+  background-color: #8a2be2;
+  color: #f5f5f5;
+}
+.txt{
+  height: 2em;
+  width: 300px;
+  border: none;
+  padding: 0.5em;
+  border-radius: 10px 10px 10px 10px;
+}
+a{
+  text-decoration: none;
 }

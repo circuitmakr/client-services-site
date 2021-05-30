@@ -37,8 +37,9 @@ app.get('/auth/user', authCtrl.getUser)
 
 //client
 app.get('/api/client/quiz', clientCtrl.takeQuiz)
-app.put('/api/client/quiz/update',clientCtrl.changeAnswer)
+app.put('/api/client/quiz/update/:client_id',clientCtrl.changeAnswer)
 app.post('/api/client/provider/:client_id',clientCtrl.addProvider)
+// fix this POST -- use a query rather than PARAMS
 app.post('/api/client/provider/:gender,:primary_service',clientCtrl.getProviders)
 app.delete('/api/client/provider/:client_id',clientCtrl.deleteProvider)
 

@@ -15,16 +15,19 @@ module.exports ={
     changeAnswer: (req,res)=>{
         const db = req.app.get('db')
         console.log('I\'ve got a update request here!')
-        const{score, question_id , date} = req.body
+        const {client_id} = req.params
+        const {score, question_id , date} = req.body
         console.log(req.body)
         console.log(score,question_id,date)
-
-        db.quizzes.update_answer(score, question_id, date)
+        db.quizzes.update_answer(score, question_id, date,client_id)
         .then((update)=>{
             res.status(200).send(update)
         }).catch((err)=>{
             res.status(424).send(err)
         })
+    },
+    submitQuiz: (req,res)=>{
+        
     },
     addProvider: (req,res)=>{
         const db = req.app.get('db')
@@ -59,8 +62,5 @@ module.exports ={
         }).catch((err)=>{
             res.status(404).send('Provider not found.')
         })
-    },
-    submitQuiz: (req,res)=>{
-        
     }
 }

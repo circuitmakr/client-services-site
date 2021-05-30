@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS tbl_client_to_provider;
-DROP TABLE IF EXISTS tbl_graph;
 DROP TABLE IF EXISTS tbl_answers;
 DROP TABLE IF EXISTS tbl_lu_answers;
 DROP TABLE IF EXISTS tbl_questions;
@@ -53,12 +52,6 @@ CREATE TABLE tbl_answers (
   q_date DATE,
   score INT, 
   answer INT REFERENCES tbl_lu_answers(lu_answer_id)
-);
-CREATE TABLE tbl_graph (
-  graph_id SERIAL PRIMARY KEY,
-  client_id INT REFERENCES tbl_client(client_id),
-  quiz_id INT REFERENCES tbl_quiz(quiz_id),
-  score INT
 );
 CREATE TABLE tbl_client_to_provider (
   tbl_client_to_provider_id SERIAL PRIMARY KEY,
