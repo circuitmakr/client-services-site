@@ -3,6 +3,7 @@ import{Switch, Route} from 'react-router-dom';
 import C_Intake from './Components/Client/C_Intake';
 import C_Quiz from './Components/Client/C_Quiz';
 import C_Dashboard from './Components/Client/C_Dashboard/C_Dashboard'
+import C_Progress from './Components/Client/C_Progress'
 import Chart from './Components/Chart';
 import Login from './Components/Login';
 import C_Schedule from './Components/Client/C_Schedule';
@@ -23,8 +24,7 @@ export default (
         <Route path='/c_Intake' component={C_Intake} />
         <Route path='/c_quiz' component={C_Quiz} />
         <Route path='/c_history' component={C_History} />
-        <Route path='/c_progress' component={Chart} />
-      
+        <Route path='/c_progress' component={C_Progress} />
         <Route path='/p_dashboard' component={P_Dashboard} />
         <Route path='/p_schedule' component={P_Schedule} />
         <Route path='/p_notes' component={P_Notes} />

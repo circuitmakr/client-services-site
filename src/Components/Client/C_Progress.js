@@ -1,8 +1,8 @@
 import Header from '../C_Header'
 
-function Schedule(){
+function Progress(){
     return(
         <Header />
     )
 }
-export default Schedule;
+export default Progress;

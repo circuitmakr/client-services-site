@@ -8,11 +8,11 @@ function Header() {
       <div className="sub_container">
         <nav className="links">
         <div className='logo'></div>
-        <Link to='/c_Dashboard'>Home</Link>
-        <Link to='/c_Schedule'>Schedule</Link>
-        <Link to='/c_check_in'>Check In</Link>
-        <Link to='/progress'>Progress</Link>
-        <Link to='/history'>History</Link>
+        <Link to='/c_dashboard'>Home</Link>
+        <Link to='/c_schedule'>Schedule</Link>
+        <Link to='/c_quiz'>Check In</Link>
+        <Link to='/c_progress'>Progress</Link>
+        <Link to='/c_history'>History</Link>
         <Link to='/'>Logout</Link>
         </nav>
         <div className="avatar">
