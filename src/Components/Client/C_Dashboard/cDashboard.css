@@ -12,17 +12,17 @@
     height: fit-content;
     color: black;
   }
-  .p_tile:nth-child(even){
+  .tile:nth-child(odd){
     background-color: #E1C9F8;
   }
-  .p_tile:nth-child(odd){
+  .tile:nth-child(even){
     background-color: #48D7FE;
   }
   .intro_text{
     display: flex;
     margin-top: rem;
   }
-  .p_tile{
+  .tile{
     padding: 10px;
     width:100%;
     height:16rem;

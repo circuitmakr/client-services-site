@@ -1,3 +1,4 @@
+import "./Chart.css"
 import { Line } from "react-chartjs-2";
 
 function LineChart() {

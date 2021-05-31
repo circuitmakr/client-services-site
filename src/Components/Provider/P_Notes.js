@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../P_Header'
 
-function Review(){
+function Notes(){
     return(
         <div>
             <Header />
@@ -9,4 +9,4 @@ function Review(){
     )
 }
 
-export default Review;
+export default Notes;
