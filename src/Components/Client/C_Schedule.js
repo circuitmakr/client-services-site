@@ -1,4 +1,4 @@
-import Header from '../C_Header'
+import Header from './C_Header'
 
 function Schedule(){
     return(

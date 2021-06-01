@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { setUser } from "../../redux/authReducer";
 import { useDispatch } from "react-redux";
-import Header from '../P_Header';
+import Header from './P_Header';
 
 function P_Dashboard() {
   const username = "Kendal";

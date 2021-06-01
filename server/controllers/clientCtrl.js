@@ -1,5 +1,6 @@
 module.exports ={
     takeQuiz: (req,res)=>{
+        console.log('I\'ve got a get quiz request here!')
         const db = req.app.get('db')
         //const {user} = req.session
         // if(!user){

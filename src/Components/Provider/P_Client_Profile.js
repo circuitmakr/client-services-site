@@ -1,7 +1,7 @@
 import LineChart from "../../Components/Chart";
-import Header from '../P_Header'
+import Header from './P_Header'
 
-function Client_Profile() {
+function Client_Profile(props) {
     return (
       <div className="App">
         <nav>

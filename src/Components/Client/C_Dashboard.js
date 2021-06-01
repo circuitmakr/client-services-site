@@ -1,10 +1,10 @@
-import "./cDashboard.css";
+import "./C_Dashboard.css";
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { setUser } from "../../../redux/authReducer";
+import { setUser } from "../../redux/authReducer";
 import { useDispatch } from "react-redux";
-import Header from "../../C_Header";
+import Header from "./C_Header";
 
 function C_Dashboard() {
   const username = "Kendal";

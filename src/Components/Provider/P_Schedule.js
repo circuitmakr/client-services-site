@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../P_Header'
+import Header from './P_Header'
 
 function Schedule(){
     return(

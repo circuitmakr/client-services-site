@@ -70,7 +70,7 @@ INSERT INTO tbl_quiz
 VALUES('Mood_Quiz');
 
 INSERT INTO tbl_questions
-(question_type, question, quiz_id)
+(question_type, question_txt, quiz_id)
 VALUES
   ('PHQ-9','Little interest or pleasure in doing things',1),
   ('PHQ-9','Feeling down, depressed or hopeless',1),
