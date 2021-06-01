@@ -25,7 +25,6 @@
     justify-content: center;
     width: 62%;
     height: 38vh;
-   border: 1px solid red;
     margin-top: 1em;
     margin-left: auto;
     margin-right: auto;
@@ -43,6 +42,11 @@
     width: 30px;
     text-align: center;
     cursor: pointer;
+  }
+  .q_questions{
+    text-align: center;
+    width:80%;
+    height: 10rem;
   }
   .q_btn_left{
     background-image: url('../../assets/arrow-alt-circle-left-regular.svg');

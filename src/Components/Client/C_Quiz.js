@@ -14,6 +14,7 @@ function Quiz() {
   const [count, setCount] = useState(1);
   const { quiz } = useSelector((store) => store.quizReducer);
   const dispatch = useDispatch();
+
   useEffect(() => {
     axios
       .get("/api/client/quiz")
@@ -24,10 +25,10 @@ function Quiz() {
         console.log(err);
       });
   }, []);
-  console.log(questions);
+ 
 
-  //   let allQuestions = Array.from(questions);
-  //   let quizQuestions = allQuestions.map((e,i)=> e.question)
+  let check_in = [];
+  check_in.push(questions.map((e, i) => e.question_txt));
 
   return (
     <div>
@@ -38,14 +39,14 @@ function Quiz() {
         <div className="q_title_block">
           <h2>How are you today?</h2>
         </div>
-
         <div className="q_container">
-          {/* {questions.map((questions, index) => {
+          {check_in.map((question, index) => {
             return (
-              <div className="q_questions">{questions[{count}].question_txt}</div>
+              <div className="q_questions">
+                <h3>{question[count]}</h3>
+              </div>
             );
-          })} */}
-            {count}
+          })}
           <nav className="q_nav_controls">
             <div
               onClick={() => setCount(count - 1)}
