@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { startQuiz, endQuiz } from "../../redux/quizReducer";
 import Header from "./C_Header";
-import Questions from "./C_Questions";
 import Notes from "./C_Notes";
 
 function Quiz() {
@@ -56,9 +54,9 @@ function Quiz() {
 const handleToggle =() =>{
     setToggle(!toggle)
 }
-useEffect(()=>{
-    console.log(toggle)
-}, [toggle]);
+const handleQuizComplete = () =>{
+  setCompleted(!completed)
+}
 
   //const date = Date(mm/dd/yyyy)
   return (
@@ -123,7 +121,7 @@ useEffect(()=>{
           <caption>{selection[answers]}</caption>
         </div>
         <div className="q_log_quiz">
-          <button className="q_btnSubmit" disabled={status}>
+          <button onClick={setCompleted} className="q_btnSubmit" disabled={status}>
             Submit
           </button>
         </div>

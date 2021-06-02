@@ -20,6 +20,7 @@
   }
   .intro_text{
     display: flex;
+    border: 1px solid black;
   }
   .tile{
     padding: 10px;
@@ -31,4 +32,36 @@
   .greeting{
     margin-top: 5rem;
     width: fit-content;
+
+  }
+  .appointment_notice{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    height: 6rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+   .btn_booking,
+   .btn_booking_link {
+    align-self: center;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 5rem;
+    height: 2.5rem;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 10px 10px;
+  }
+  .appointment_title{
+    display: flex;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    z-index: auto;
+  }
+  .btn_booking:hover{
+    background-color:#0B4F6C;
+    color: whitesmoke;
   }
