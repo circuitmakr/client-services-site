@@ -1,0 +1,16 @@
+.lst_providers {
+  display: flex;
+  width: 12rem;
+  float: right;
+  margin-right: 1rem;
+}
+.lst_label {
+  display: flex;
+  float: left;
+  margin-left: -6rem;
+  display: flex;
+  align-content: flex-end;
+  width: fit-content;
+  color: whitesmoke;
+  margin-top: -0.25rem
+}
