@@ -20,7 +20,11 @@
 }
 .s_intro_text{
   display: flex;
+  flex-direction: column;
   margin-top: 1em;
+}
+.s_intro_text.s_tile{
+  height: 32rem;
 }
 .s_tile{
   padding: 10px;
@@ -32,4 +36,67 @@
 .s_greeting{
   margin-top: 5rem;
   width: fit-content;
+}
+.s_current_date{
+  display:flex;
+  flex-direction: column;
+}
+.s_calendar{
+  display: grid;
+  width: 95%;
+  height: 70%;
+  border-radius: 10px 10px;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 0.25fr 1fr;
+  text-align: center;
+}
+
+.grid-item.top{
+  background-color: purple;
+  border: 1px solid black;
+  padding: 5px;
+  color: whitesmoke;
+}
+.grid-item.bottom{
+  background-color: whitesmoke;
+  border: 1px solid black;
+  padding: 5px;
+}
+.s_calendar_nav{
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  justify-content: center;
+  align-self: center;
+}
+.s_calendar_btn{
+  width: 4rem;
+  height: 2rem;
+}
+.s_calendar_btn.left{
+  background-image: url('../../assets/arrow-alt-circle-left-regular.svg');
+  background-repeat: no-repeat;
+}
+.s_calendar_btn.left:hover{
+  background-image: url('../../assets/arrow-alt-circle-left-solid.svg')
+}
+.s_calendar_btn.today{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  width: fit-content;
+}
+.s_calendar_btn.right{
+  background-image: url('../../assets/arrow-alt-circle-right-regular.svg');
+  background-repeat: no-repeat;
+  background-position-x: right;
+}
+.s_calendar_btn.right:hover{
+  background-image: url('../../assets/arrow-alt-circle-right-solid.svg')
+}
+ul{
+  list-style-type: none;
 }
