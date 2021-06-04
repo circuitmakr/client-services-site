@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS tbl_calendar;
 DROP TABLE IF EXISTS tbl_client_to_provider;
 DROP TABLE IF EXISTS tbl_answers;
 DROP TABLE IF EXISTS tbl_lu_answers;
@@ -6,6 +7,8 @@ DROP TABLE IF EXISTS tbl_quiz;
 DROP TABLE IF EXISTS tbl_sessions;
 DROP TABLE IF EXISTS tbl_provider;
 DROP TABLE IF EXISTS tbl_client;
+
+
 
 CREATE TABLE tbl_client (
   client_id SERIAL PRIMARY KEY,
@@ -49,7 +52,7 @@ CREATE TABLE tbl_answers (
   quiz_id INT REFERENCES tbl_quiz(quiz_id),
   client_id INT REFERENCES tbl_client(client_id),
   question_id INT REFERENCES tbl_questions(question_id),
-  q_date DATE,
+  q_date DATE DEFAULT GETDATE(),
   score INT, 
   answer INT REFERENCES tbl_lu_answers(lu_answer_id)
 );
@@ -59,9 +62,34 @@ CREATE TABLE tbl_client_to_provider (
   provider_id INT REFERENCES tbl_provider(provider_id)
 );
 
+CREATE TABLE tbl_calendar(
+  calendar_id SERIAL PRIMARY KEY,
+  provider_id INT REFERENCES tbl_provider(provider_id)
+  cal_date DATE,
+  time_range_01 VARCHAR(50) DEFAULT '8:00 am - 9:00 am',
+  time_range_02 VARCHAR(50) DEFAULT '9:00 am - 10:00 am',
+  time_range_03 VARCHAR(50) DEFAULT '10:00 am - 11:00 am',
+  time_range_04 VARCHAR(50) DEFAULT '11:00 am - 12:00 pm',
+  time_range_05 VARCHAR(50) DEFAULT '12:00 pm - 1:00 pm',
+  time_range_06 VARCHAR(50) DEFAULT '1:00 pm - 2:00 pm',
+  time_range_07 VARCHAR(50) DEFAULT '2:00 pm - 3:00 pm',
+  time_range_08 VARCHAR(50) DEFAULT '3:00 pm - 4:00 pm',
+  time_range_09 VARCHAR(50) DEFAULT '4:00 pm - 5:00 pm',
+  time_range_10 VARCHAR(50) DEFAULT '5:00 pm - 6:00 pm',
+  time_range_11 VARCHAR(50) DEFAULT '6:00 pm - 7:00 pm',
+  time_range_12 VARCHAR(50) DEFAULT '7:00 pm - 8:00 pm',
+  time_range_13 VARCHAR(50) DEFAULT '8:00 pm - 9:00 pm',
+  time_range_14 VARCHAR(50) DEFAULT '9:00 pm - 10:00 pm',
+  available BOOL DEFAULT false
+);
+
+
 --DELETE TABLE DATA
 DELETE FROM tbl_provider 
 WHERE name IS NOT NULL;
+
+-- ALTER TABLE tbl_X
+-- RENAME COLUMN Y TO Z;
 
 --QUIZ SEED
 

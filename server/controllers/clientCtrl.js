@@ -15,7 +15,7 @@ module.exports ={
     },
     changeAnswer: (req,res)=>{
         const db = req.app.get('db')
-        console.log('I\'ve got a update request here!')
+        console.log('I\'ve got an update request here!')
         const {client_id} = req.params
         const {score, question_id , date} = req.body
         console.log(req.body)

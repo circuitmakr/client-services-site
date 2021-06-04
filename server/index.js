@@ -44,11 +44,10 @@ app.post('/api/client/provider/:gender,:primary_service',clientCtrl.getProviders
 app.delete('/api/client/provider/:client_id',clientCtrl.deleteProvider)
 
 //provider
-app.post('/api/client/message/:client_id')
-app.get('/api/provider/quiz/:client_id', providerCtrl.getQuiz)
-app.post('/api/provider/assignments/:assignment_id')
-app.post('api/provider/message/:client_id')
-app.get('api/provider/message/:client_id')
+app.post('/api/provider/calendar/:provider_id',providerCtrl.postCalendar)
+app.get('/api/provider/quiz/:client_id', providerCtrl.getQuizScores)
+app.put('/api/provider/calendar/:provider_id',providerCtrl.editCalendar)
+app.get('/api/provider/calendar/:provider_id',providerCtrl.getCalendar)
 app.post('api/assignments/:assignment_id, : client_id')
 app.put('api/provider/messages/:message_id')
 app.delete('api/provider/appointments/:appointment_id')
