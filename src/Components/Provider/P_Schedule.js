@@ -7,14 +7,27 @@ import axios from "axios";
 function Schedule() {
   const [schedule, setSchedule] = useState([]);
   const [calendar, setCalendar] = useState([]);
+  const [servernote, setServerNote] = useState([])
 
   useEffect(() => {
+    
     if (!schedule.find((item) => item.className === calendar)) {
-      setSchedule([...schedule, { id: schedule.length, name: calendar }]);
+      setSchedule([...schedule, { id: schedule.length, name: calendar }])
     }else{
-      
+      alert('You already entered that time slot.')
     }
   }, [calendar]);
+
+const handleSave =() =>{
+  axios
+  .post("/api/provider/calendar/:provider_id")
+  .then((res) => {
+    setServerNote(res.data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
 
   return (
     <div>
@@ -29,10 +42,16 @@ function Schedule() {
           <h2>Availability Calendar</h2>
           <div className="ps_calendar_display">
             <div className="ps_calendar_header">
+              <div className="ps_calendar_header_text">
               <h3>Your Availability Schedule</h3>
+              </div>
+              <div className='ps_btn_submit_container'>
+              <button onClick={()=>handleSave()} className="ps_btn_submit">Save</button>
+              </div>
             </div>
+            
             <hr />
-            <div className="display_selections">
+            <div className="ps_display_selections">
               {schedule.map((item) => (
                 <li key={item.id}>{item.name}</li>
               ))}
@@ -42,7 +61,7 @@ function Schedule() {
             <div className="ps_grid-item ps_toggle">
               <div className="ps_timeslot_title">
                 <h3>Timeslot</h3>
-                <button className="ps_btn_submit">Save</button>
+                
               </div>
             </div>
             <div className="ps_grid-item ps_toggle">
