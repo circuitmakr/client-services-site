@@ -48,7 +48,5 @@ app.post('/api/provider/calendar/:provider_id',providerCtrl.postCalendar)
 app.get('/api/provider/quiz/:client_id', providerCtrl.getQuizScores)
 app.put('/api/provider/calendar/:provider_id',providerCtrl.editCalendar)
 app.get('/api/provider/calendar/:provider_id',providerCtrl.getCalendar)
-app.post('api/assignments/:assignment_id, : client_id')
-app.put('api/provider/messages/:message_id')
-app.delete('api/provider/appointments/:appointment_id')
+
 

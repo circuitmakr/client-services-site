@@ -64,7 +64,7 @@ CREATE TABLE tbl_client_to_provider (
 
 CREATE TABLE tbl_calendar(
   calendar_id SERIAL PRIMARY KEY,
-  provider_id INT REFERENCES tbl_provider(provider_id)
+  provider_id INT REFERENCES tbl_provider(provider_id),
   cal_date DATE,
   time_range_01 VARCHAR(50) DEFAULT '8:00 am - 9:00 am',
   time_range_02 VARCHAR(50) DEFAULT '9:00 am - 10:00 am',
@@ -80,9 +80,18 @@ CREATE TABLE tbl_calendar(
   time_range_12 VARCHAR(50) DEFAULT '7:00 pm - 8:00 pm',
   time_range_13 VARCHAR(50) DEFAULT '8:00 pm - 9:00 pm',
   time_range_14 VARCHAR(50) DEFAULT '9:00 pm - 10:00 pm',
-  available BOOL DEFAULT false
+  available BOOL NOT NULL DEFAULT false
 );
 
+CREATE TEMP TABLE tbl_mock_calendar(LIKE tble_calendar INCLUDING DEFAULTS)
+ON COMMIT DROP
+
+INSERT INTO tble_mock_calendar DEFAULT VALUES RETURNING*
+
+-- INSERT INTO tbl_calendar(
+--   provider_id, cal_date,time_range_01,time_range_02,time_range_03,time_range_04,time_range_05,time_range_06,time_range_07,time_range_08,time_range_09,time_range_10,time_range_11,time_range_12, 
+--   time_range_13,time_range_14,available)
+--   VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17);
 
 --DELETE TABLE DATA
 DELETE FROM tbl_provider 
@@ -208,3 +217,25 @@ VALUES
 (1, 5, 14, '5/03/2021', 2, 3),
 (1, 5, 15, '5/03/2021', 4, 1),
 (1, 5, 16, '5/03/2021', 3, 4);
+
+INSERT INTO tbl_calendar(
+    provider_id,
+    cal_date,
+    time_range_01,
+    time_range_02,
+    time_range_03,
+    time_range_04,
+    time_range_05,
+    time_range_06,
+    time_range_07,
+    time_range_08,
+    time_range_09,
+    time_range_10,
+    time_range_11,
+    time_range_12,
+    time_range_13,
+    time_range_14,
+    available
+  )
+VALUES (
+  

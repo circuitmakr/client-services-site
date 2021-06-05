@@ -26,7 +26,7 @@
   margin-top: 1em;
 }
 .ps_intro_text.ps_tile {
-  height: 50rem;
+  height: 40rem;
 }
 .ps_tile {
   padding: 10px;
@@ -37,6 +37,7 @@
 }
 .ps_greeting {
   margin-top: 5rem;
+  margin-left: 0.5rem;
   width: fit-content;
 }
 .ps_schedule_wrapper {
@@ -63,6 +64,43 @@
   color: black;
 }
 .ps_date_picker{
-  width:80%;
+  width:85%;
   height: 100%;
+}
+.ps_calendar_display{
+  position: absolute;
+  margin-left: 34.5rem;
+  margin-top: 4rem;
+  width: 30%;
+  height: 80%;
+  border-radius: 10px 10px;
+  background-color: whitesmoke;
+  text-align: left;
+  text-indent: 1rem;
+  border: 1px solid black;
+}
+.ps_calendar_header{
+  justify-content: center;
+  background-color: #9947EB;
+  text-align: center;
+  margin-top: 0rem;
+  width: 100%;
+  height: 2.3rem;
+  border-bottom: 2px solid black;
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0px 1px 4px 1px rgb(131, 126, 126);
+}
+.ps_timeslot_title{
+  display: flex;
+  justify-content: space-between;
+  flex-direction:row;
+  width: 91%
+}
+.ps_btn_submit{
+  width: 4rem;
+  height: 1.5rem;
+  border-radius: 5px 5px;
+}
+li{
+  list-style-type: none;
 }
