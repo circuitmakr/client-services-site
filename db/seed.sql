@@ -17,13 +17,18 @@ CREATE TABLE tbl_client (
   primary_service VARCHAR(100),
   gender VARCHAR(50),
   insured BOOL
+  username VARCHAR(50),
+  usertype VARCHAR(50)
 );
 CREATE TABLE tbl_provider (
   provider_id SERIAL PRIMARY KEY,
+  username VARCHAR(50),
   name VARCHAR(100),
   password VARCHAR(2000),
   primary_service VARCHAR(100),
   gender VARCHAR(50)
+  username VARCHAR(50),
+  usertype VARCHAR(50)
 );
 CREATE TABLE tbl_sessions (
   session_id SERIAL PRIMARY KEY,
@@ -97,8 +102,11 @@ INSERT INTO tble_mock_calendar DEFAULT VALUES RETURNING*
 DELETE FROM tbl_provider 
 WHERE name IS NOT NULL;
 
--- ALTER TABLE tbl_X
--- RENAME COLUMN Y TO Z;
+-- ALTER TABLE z
+-- RENAME COLUMN x TO y;
+
+-- ALTER TABLE z
+-- ADD COLUMN x VARCHAR(50);
 
 --QUIZ SEED
 

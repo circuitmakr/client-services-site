@@ -3,25 +3,29 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { setUser } from "../redux/authReducer";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-function Login() {
+function Auth(props) {
   const [sel_Client, setSel_Client] = useState(0);
   const [sel_Provider, setSel_Provider] = useState(0);
+  const [username, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+  const [usertype, setUserType] = useState('')
+  const dispatch = useDispatch()
   let [p_logtype, setP_Logtype] = useState(false);
   let [c_logtype, setC_Logtype] = useState(false);
-
+  
   useEffect(() => {
     setP_Logtype(!p_logtype);
     console.log("use Effect!");
   }, []);
 
   const provider_handleClick = () => {
-    // setP_Logtype(!p_logtype)
-    // setC_Logtype(false);
+    // setP_Logtype(!p_logtype) 
     setSel_Provider(!sel_Provider);
     console.log("clicked p_log", p_logtype);
     console.log("c_log", c_logtype);
+    setUserType('provider')
   };
   const client_handleClick = () => {
     setC_Logtype(false);
@@ -30,26 +34,37 @@ function Login() {
     setC_Logtype(!c_logtype);
     console.log("clicked c_log", c_logtype);
     console.log("p_log", p_logtype);
+    setUserType('client')
   };
 
-  const handleLogin= async ()=>{
-    try {
-      const res = await axios.post("/auth/login", {
-        email: this.state.email,
-        password: this.state.password,
-      })
-      this.props.saveUser(res.data)
-    } catch (err) {
-      console.log(err)
+  const handleLogin=()=>{
+    console.log({username, password, usertype})
+      axios.post('/auth/login', {username, password, usertype})
+      .then((res)=>{
+        console.log(res.status)
+        dispatch(setUser(res.data.user))
+        console.log(props)
+        const {usertype} = res.data
+        console.log('I have user.data here', res.data)
+        if(usertype==='client'){
+          props.history.push('/c_dashboard')
+        }
+        if(usertype ==='provider'){
+          console.log('I should be pushing to provider')
+          props.history.push('/p_dashboard')
+        }
+      }).catch(err => console.log(err))
     }
-  }
+
   const handleRegister = async () => {
     try {
       const res = await axios.post("/auth/register", {
-        email: this.state.email,
-        password: this.state.password,
+        username: username,
+        password: password,
+        usertype: usertype
       })
-      this.props.saveUser(res.data)
+      // this.props.saveUser(res.data)
+      // console.log('register props:',props)
     } catch (err) {
       console.log(err)
     }
@@ -95,17 +110,20 @@ function Login() {
           </button>
         </div>
         <article className="login_container">
-          <input className="username txt" placeholder="Username"></input>
+          <input onChange={(e)=> setUserName(e.target.value)} className="username txt" placeholder="Username"></input>
           <div className="login_spacer"></div>
-          <input className="password txt" placeholder="Password"></input>
+          <input onChange={(e)=> setPassword(e.target.value)} className="password txt" type='password' placeholder="Password"></input>
         </article>
         <div className="btn_container">
-          <button className="btn_login">LOGIN</button>
+          <button onClick={handleLogin} className="btn_login">LOGIN</button>
           <article>or</article>
           <article className="btnNewAccount">
-            <Link to="/c_dashboard" className="signup">
+            {/* <Link to="/c_dashboard" className="signup">
               CREATE AN ACCOUNT
-            </Link>
+            </Link> */}
+            <a href='#' onClick={handleRegister} to="/c_dashboard" className="signup">
+              CREATE AN ACCOUNT
+            </a>
           </article>
         </div>
       </div>
@@ -113,4 +131,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Auth;

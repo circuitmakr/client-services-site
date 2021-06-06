@@ -5,9 +5,10 @@ import axios from "axios";
 import { setUser } from "../../redux/authReducer";
 import { useDispatch } from "react-redux";
 import Header from './P_Header';
+import {user} from "../../redux/authReducer"
 
-function P_Dashboard() {
-  const username = "Kendal";
+function P_Dashboard(props) {
+  
   return (
     <div>
       <nav>
@@ -15,7 +16,7 @@ function P_Dashboard() {
       </nav>
       <div className="tiles_container">
         <div className="greeting">
-          <h1>{`Hello, ${username}`}</h1>
+          <h1>{`Hello, ${'Kendal'}`}</h1>
         </div>
         <div className="intro_text p_tile">
           <h2>Upcoming Appointments</h2>
