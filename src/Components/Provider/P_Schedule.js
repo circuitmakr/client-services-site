@@ -2,13 +2,16 @@ import "./P_Schedule.css";
 import React, { useEffect } from "react";
 import Header from "./P_Header";
 import { useState } from "react";
+import {useSelector} from 'react-redux'
+import {setUser} from '../../redux/authReducer'
 import axios from "axios";
 
 function Schedule() {
   const [schedule, setSchedule] = useState([]);
   const [calendar, setCalendar] = useState([]);
   const [servernote, setServerNote] = useState([])
-
+  const user = useSelector((store) => store.authReducer.user.username);
+  const userID = useSelector(store => store.authReducer.user.provider_id);
   useEffect(() => {
     
     if (!schedule.find((item) => item.className === calendar)) {
@@ -20,7 +23,7 @@ function Schedule() {
 
 const handleSave =() =>{
   axios
-  .post("/api/provider/calendar/:provider_id")
+  .post(`/api/provider/calendar/${userID}`)
   .then((res) => {
     setServerNote(res.data);
   })
@@ -36,7 +39,7 @@ const handleSave =() =>{
       </nav>
       <div className="ps_tiles_container">
         <div className="ps_greeting">
-          <h1>{`Hello, Kendal`}</h1>
+          <h1>{`Hello, ${user}`}</h1>
         </div>
         <div className="ps_intro_text ps_tile">
           <h2>Availability Calendar</h2>

@@ -4,11 +4,10 @@ import { Link, withRouter } from "react-router-dom";
 import axios from 'axios'
 
 
-function P_Header() {
+function P_Header(props) {
   const handleLogout = async () => {
     try {
       await axios.get("/auth/logout")
-      this.props.logoutUser()
     } catch (err) {
       console.log(err)
     }

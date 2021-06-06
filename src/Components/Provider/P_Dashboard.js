@@ -3,12 +3,12 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { setUser } from "../../redux/authReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Header from './P_Header';
 import {user} from "../../redux/authReducer"
 
 function P_Dashboard(props) {
-  
+  const currentUser = useSelector(store=>store.authReducer.user.username)
   return (
     <div>
       <nav>
@@ -16,7 +16,7 @@ function P_Dashboard(props) {
       </nav>
       <div className="tiles_container">
         <div className="greeting">
-          <h1>{`Hello, ${'Kendal'}`}</h1>
+          <h1>{`Hello, ${currentUser}`}</h1>
         </div>
         <div className="intro_text p_tile">
           <h2>Upcoming Appointments</h2>

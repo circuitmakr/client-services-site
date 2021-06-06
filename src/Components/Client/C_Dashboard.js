@@ -2,14 +2,19 @@ import "./C_Dashboard.css";
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { setUser } from "../../redux/authReducer";
-import { useDispatch } from "react-redux";
+import {useSelector } from "react-redux";
 import Header from "./C_Header";
 import { Link } from "react-router-dom";
+import {setUser} from '../../redux/authReducer'
+import {authReducer} from "../../redux/authReducer";
 
 
-function C_Dashboard() {
-  const username = "Kendal";
+function C_Dashboard(props) {
+
+const current = useSelector(store => store.authReducer.user.username)
+
+console.log(current)
+
   return (
     <div>
       <nav>
@@ -17,7 +22,7 @@ function C_Dashboard() {
       </nav>
       <div className="tiles_container">
         <div className="greeting">
-          <h1>{`Hello, ${username}`}</h1>
+          <h1>{`Hello, ${current}`}</h1>
         </div>
         <div className="intro_text tile">
           <div className='appointment_title'>

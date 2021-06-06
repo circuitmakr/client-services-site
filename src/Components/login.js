@@ -2,8 +2,8 @@ import "./Login.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { setUser } from "../redux/authReducer";
-import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector} from "react-redux";
+import { Link } from "react-router-dom";
 
 function Auth(props) {
   const [sel_Client, setSel_Client] = useState(0);
@@ -19,6 +19,7 @@ function Auth(props) {
     setP_Logtype(!p_logtype);
     console.log("use Effect!");
   }, []);
+
 
   const provider_handleClick = () => {
     // setP_Logtype(!p_logtype) 
@@ -41,21 +42,20 @@ function Auth(props) {
     console.log({username, password, usertype})
       axios.post('/auth/login', {username, password, usertype})
       .then((res)=>{
-        console.log(res.status)
-        dispatch(setUser(res.data.user))
-        console.log(props)
+        
+        dispatch(setUser(res.data))
+       
         const {usertype} = res.data
-        console.log('I have user.data here', res.data)
         if(usertype==='client'){
           props.history.push('/c_dashboard')
         }
         if(usertype ==='provider'){
-          console.log('I should be pushing to provider')
           props.history.push('/p_dashboard')
         }
       }).catch(err => console.log(err))
     }
-
+    const checkup = useSelector(state => state)
+    console.log("checkup:",checkup)
   const handleRegister = async () => {
     try {
       const res = await axios.post("/auth/register", {
@@ -63,8 +63,6 @@ function Auth(props) {
         password: password,
         usertype: usertype
       })
-      // this.props.saveUser(res.data)
-      // console.log('register props:',props)
     } catch (err) {
       console.log(err)
     }
@@ -78,7 +76,8 @@ function Auth(props) {
       console.log(err)
     }
   }
-
+  const checkuser = useSelector(state => state)
+  console.log(checkuser)
   return (
     <div className="Login">
       <div className="main_container">
