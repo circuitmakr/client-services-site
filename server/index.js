@@ -42,6 +42,7 @@ app.post('/api/client/provider/:client_id',clientCtrl.addProvider)
 // fix this POST -- use a query rather than PARAMS
 app.post('/api/client/provider/:gender,:primary_service',clientCtrl.getProviders)
 app.delete('/api/client/provider/:client_id',clientCtrl.deleteProvider)
+app.get('/api/client/provider/calendar/:provider_id',clientCtrl.getCalendar)
 
 //provider
 app.post('/api/provider/calendar/:provider_id',providerCtrl.postCalendar)

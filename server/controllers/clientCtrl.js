@@ -51,6 +51,15 @@ module.exports ={
             res.status(424).send('No providers available for your selection(s). Please adjust your search and try again.')
         })
     },
+    getCalendar: (req,res)=>{
+        const db = req.app.get('db')
+        const {provider_id} = req.params
+        db.c_client.get_calendar(provider_id)
+        .then((schedule)=>{
+            res.status(200).send(schedule)
+        }).catch(err => {res.status(500).send('No calendar available')
+        })
+    },
     deleteProvider: (req,res)=>{
         const db = req.app.get('db')
         const{client_id} = req.params

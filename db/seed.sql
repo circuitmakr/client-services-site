@@ -71,22 +71,26 @@ CREATE TABLE tbl_calendar(
   calendar_id SERIAL PRIMARY KEY,
   provider_id INT REFERENCES tbl_provider(provider_id),
   cal_date DATE,
-  time_range_01 VARCHAR(50) DEFAULT '8:00 am - 9:00 am',
-  time_range_02 VARCHAR(50) DEFAULT '9:00 am - 10:00 am',
-  time_range_03 VARCHAR(50) DEFAULT '10:00 am - 11:00 am',
-  time_range_04 VARCHAR(50) DEFAULT '11:00 am - 12:00 pm',
-  time_range_05 VARCHAR(50) DEFAULT '12:00 pm - 1:00 pm',
-  time_range_06 VARCHAR(50) DEFAULT '1:00 pm - 2:00 pm',
-  time_range_07 VARCHAR(50) DEFAULT '2:00 pm - 3:00 pm',
-  time_range_08 VARCHAR(50) DEFAULT '3:00 pm - 4:00 pm',
-  time_range_09 VARCHAR(50) DEFAULT '4:00 pm - 5:00 pm',
-  time_range_10 VARCHAR(50) DEFAULT '5:00 pm - 6:00 pm',
-  time_range_11 VARCHAR(50) DEFAULT '6:00 pm - 7:00 pm',
-  time_range_12 VARCHAR(50) DEFAULT '7:00 pm - 8:00 pm',
-  time_range_13 VARCHAR(50) DEFAULT '8:00 pm - 9:00 pm',
-  time_range_14 VARCHAR(50) DEFAULT '9:00 pm - 10:00 pm',
-  available BOOL NOT NULL DEFAULT false
-);
+  daily_schedule VARCHAR[]
+  available BOOL NOT NULL DEFAULT false);
+  -- time_range_01 VARCHAR(50) DEFAULT '8:00 am - 9:00 am',
+  -- time_range_02 VARCHAR(50) DEFAULT '9:00 am - 10:00 am',
+  -- time_range_03 VARCHAR(50) DEFAULT '10:00 am - 11:00 am',
+  -- time_range_04 VARCHAR(50) DEFAULT '11:00 am - 12:00 pm',
+  -- time_range_05 VARCHAR(50) DEFAULT '12:00 pm - 1:00 pm',
+  -- time_range_06 VARCHAR(50) DEFAULT '1:00 pm - 2:00 pm',
+  -- time_range_07 VARCHAR(50) DEFAULT '2:00 pm - 3:00 pm',
+  -- time_range_08 VARCHAR(50) DEFAULT '3:00 pm - 4:00 pm',
+  -- time_range_09 VARCHAR(50) DEFAULT '4:00 pm - 5:00 pm',
+  -- time_range_10 VARCHAR(50) DEFAULT '5:00 pm - 6:00 pm',
+  -- time_range_11 VARCHAR(50) DEFAULT '6:00 pm - 7:00 pm',
+  -- time_range_12 VARCHAR(50) DEFAULT '7:00 pm - 8:00 pm',
+  -- time_range_13 VARCHAR(50) DEFAULT '8:00 pm - 9:00 pm',
+  -- time_range_14 VARCHAR(50) DEFAULT '9:00 pm - 10:00 pm',
+  -- available BOOL NOT NULL DEFAULT false
+
+
+
 
 CREATE TEMP TABLE tbl_mock_calendar(LIKE tble_calendar INCLUDING DEFAULTS)
 ON COMMIT DROP

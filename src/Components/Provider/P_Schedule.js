@@ -22,15 +22,29 @@ function Schedule() {
   }, [calendar]);
 
 const handleSave =() =>{
-  axios
-  .post(`/api/provider/calendar/${userID}`)
-  .then((res) => {
-    setServerNote(res.data);
+  const daysOftheWeek=['8:00 am - 9:00 am','9:00 am - 10:00 am', '10:00 am - 11:00 am','11:00 am - 12:00 pm','12:00 pm - 1:00 pm','1:00 pm - 2:00 pm','2:00 pm - 3:00 pm','3:00 pm - 4:00 pm','4:00 pm - 5:00 pm','5:00 pm - 6:00 pm','6:00 pm - 7:00 pm','7:00 pm - 8:00 pm','8:00 pm - 9:00 pm','9:00 pm - 10:00 pm']
+  let scheduleArr = []
+  scheduleArr = schedule.map((e)=>e.name)
+  const dates =scheduleArr
+  let calendarDate = dates[1]
+  let flagAvailable = true
+  const calendar =['*','*','*','*','*','*','*','*','*','*','*','*','*','*']
+  
+  for(let i =0; i<daysOftheWeek.length;i++){
+    let index = daysOftheWeek.indexOf(dates[i])
+    if(index>=0){
+    calendar.splice(index,1,dates[i])
+    }
+  }
+  console.log(calendarDate,calendar)
+   axios.post(`/api/provider/calendar/${userID}`,{userID, calendarDate, calendar, flagAvailable})
+   .then((res)=>{
+     console.log(res.data)
   })
-  .catch((err) => {
-    console.log(err);
-  });
-}
+    .catch(err=> console.log(err))
+  }
+
+
 
   return (
     <div>
@@ -49,7 +63,7 @@ const handleSave =() =>{
               <h3>Your Availability Schedule</h3>
               </div>
               <div className='ps_btn_submit_container'>
-              <button onClick={()=>handleSave()} className="ps_btn_submit">Save</button>
+              <button onClick={handleSave} className="ps_btn_submit">Save</button>
               </div>
             </div>
             
