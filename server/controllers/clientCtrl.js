@@ -2,10 +2,10 @@ module.exports ={
     takeQuiz: (req,res)=>{
         console.log('I\'ve got a get quiz request here!')
         const db = req.app.get('db')
-        //const {user} = req.session
-        // if(!user){
-        //     return res.status(511).send('User not logged in.')
-        // }
+        const {user} = req.session
+        if(!user){
+            return res.status(511).send('User not logged in.')
+        }
         db.quizzes.get_quiz()
         .then((quiz)=>{
             res.status(200).send(quiz)
@@ -28,7 +28,19 @@ module.exports ={
         })
     },
     submitQuiz: (req,res)=>{
-        
+        const db = req.app.get('db')
+        console.log('I\'ve got a quiz submission here!')
+        console.log(req)
+        const {client_id} = req.params
+        const {q_date, quiz_id} = req.body
+        const {collectAnswers} = req.body
+     
+        db.quizzes.submit_answer(quiz_id, client_id, q_date, collectAnswers)
+        .then(update=>{
+            res.status(200).send(update)
+        }).catch((err)=>{
+            res.status(424).send(err)
+        })
     },
     addProvider: (req,res)=>{
         const db = req.app.get('db')
@@ -52,6 +64,7 @@ module.exports ={
         })
     },
     getCalendar: (req,res)=>{
+        console.log('I\'ve got a calendar request here!')
         const db = req.app.get('db')
         const {provider_id} = req.params
         db.c_client.get_calendar(provider_id)

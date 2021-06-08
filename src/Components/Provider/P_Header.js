@@ -19,7 +19,7 @@ function P_Header(props) {
         <div onclick={handleLogout} className='p_logo'></div>
         <Link to='/p_dashboard'>Home</Link>
         <Link to='/p_schedule'>Appointments</Link>
-        <Link to='/p_notes'>Client Notes</Link>
+        <Link to='/p_notes'>Assignments</Link>
         <Link to='/p_history'>Client Profiles</Link>
         <Link to='/p_progress'>Client Progress</Link>
         <Link to='/'>Logout</Link>

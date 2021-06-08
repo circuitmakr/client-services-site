@@ -5,17 +5,19 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "./C_Header";
 import Notes from "./C_Notes";
+import endQuiz from "../../redux/quizReducer"
+import session from "express-session";
 
 function Quiz() {
+  const client_id = useSelector(store => store.authReducer.user.client_id)
   const [answers, setAnswers] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [sliderreset, setSliderReset] = useState(0);
   const [questions, setQuestions] = useState([]);
-  const [collectanswers, setCollectAnswers] = useState([]);
+  const [collectAnswers, setCollectAnswers] = useState([]);
   const [toggle, setToggle] = useState(false);
-  let [status, setStatus] = useState(true);
+  let [btn_status, setBtn_Status] = useState(true);
   let [count, setCount] = useState(0);
-  const { quiz } = useSelector((store) => store.quizReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,7 +34,7 @@ function Quiz() {
 
   let check_in = [];
   check_in.push(questions.map((e, i) => e.question_txt));
-
+ 
   let selection = [
     "Not at All",
     "Several Days",
@@ -42,21 +44,34 @@ function Quiz() {
   const handleSliderChange = (e) => {
     setAnswers(parseInt(e.target.value));
   };
-
+ // questions[count].question_type,
+console.log('questions:', questions)
   useEffect(() => {
-    setCollectAnswers(count, answers);
-    if (count < check_in[0].length - 1 || check_in[0].length === 0) {
-      setStatus(true);
-    } else {
-      setStatus(false);
+    if(questions.length>0){
+    setCollectAnswers((ca)=> [...ca,[count, answers]]);
     }
+    if (count < check_in[0].length - 1 || check_in[0].length === 0) {
+      setBtn_Status(true);
+    } else {
+      setBtn_Status(false);
+    }
+  
   }, [count]);
 const handleToggle =() =>{
     setToggle(!toggle)
 }
 const handleQuizComplete = () =>{
-  setCompleted(!completed)
+  let quiz_id =1;
+  let q_date = new Date();
+  setCompleted(true)
+  axios.post(`/api/client/quiz/submit/${client_id}`,{ quiz_id, q_date, collectAnswers})
+  .then((res)=>{
+    console.log('res:', res)
+    dispatch(endQuiz(true))
+  })
 }
+console.log(collectAnswers)
+
 
   //const date = Date(mm/dd/yyyy)
   return (
@@ -121,7 +136,7 @@ const handleQuizComplete = () =>{
           <caption>{selection[answers]}</caption>
         </div>
         <div className="q_log_quiz">
-          <button onClick={setCompleted} className="q_btnSubmit" disabled={status}>
+          <button onClick={handleQuizComplete} className="q_btnSubmit" disabled={btn_status}>
             Submit
           </button>
         </div>

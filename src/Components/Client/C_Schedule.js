@@ -6,6 +6,7 @@ import {useSelector} from '../../redux/authReducer'
 
 function Schedule() {
   let [datecount, setDateCount] = useState(0);
+  const [providerCalendar,setProviderCalendar] = useState([]);
   const usersession = "Session Planning";
   const today = new Date('June 5 2021');
   const day = ['Mon', 'Tues', 'Wed', 'Thurs','Fri']
@@ -15,8 +16,21 @@ function Schedule() {
   const daysOftheWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
   let i =0;
 
-axios.get()
-
+  useEffect(()=>{
+    
+  let provider_id = 28;
+    axios.get(`/api/client/provider/calendar/${provider_id}`)
+    .then((res)=>{
+      setProviderCalendar(res.data)
+      const {daily_schedule} = res.data
+    })
+    .catch((err)=>{
+      console.log(err)
+    });
+  },[]);
+console.log('provider calendar',providerCalendar)
+let updatedSchedule = providerCalendar.map((e)=>e.daily_schedule)
+console.log(updatedSchedule)
   return (
     <div>
       <nav>
@@ -32,7 +46,7 @@ axios.get()
           {/* <h4>{`Today is ${day[today.getDay()-1]} ${today.getMonth()+1}/${today.getDay()-1}/${today.getFullYear()}`}</h4> */}
           <nav className ="s_calendar_nav">
             <div onClick={()=> setDateCount(datecount > 0 ? datecount - 1 : (datecount = 0))} className="s_calendar_btn left"></div>
-            <div onClick={()=> setDateCount(0)}className="s_calendar_btn today">{datecount}<i class="fa fa-calendar-day"></i></div>
+            <div onClick={()=> setDateCount(0)}className="s_calendar_btn today"><i class="fa fa-calendar-day"></i></div>
             <div onClick={()=> setDateCount(datecount + 1)} className="s_calendar_btn right"></div>
           </nav>
           </div>
@@ -46,18 +60,8 @@ axios.get()
             <div className="grid-item day-4 top">{daysOftheWeek[i+6]}</div>
             <div className="grid-item day-1 bottom">
               <ul className='day_1'>
-                <li value='9am-10am' onClick={handleClick}>*</li>
-                <li >10am-11am</li>
-                <li >*</li>
-                <li >*</li>
-                <li >1pm-2pm</li>
-                <li >2pm-3pm</li>
-                <li >*</li>
-                <li >*</li>
-                <li onClick={handleClick} value='6pm-7pm'>*</li>
-                <li value='7pm-8pm' onClick={handleClick}>7pm-8pm</li>
-                <li value='8pm-9pm'>*</li>
-                <li>9pm-10pm</li>
+              {providerCalendar.map((e)=>
+                <li>{e.daily_schedule}</li>)}
               </ul>
             </div>
             <div className="grid-item day-2 bottom"></div>

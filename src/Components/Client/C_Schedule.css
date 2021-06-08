@@ -63,7 +63,12 @@
 .grid-item.bottom{
   background-color: whitesmoke;
   border: 1px solid black;
-  padding: 5px;
+ 
+  font-size:large;
+}
+.grid-item.bottom ul{
+  display: flex;
+  flex-direction: column;
 }
 .s_calendar_nav{
   display: flex;

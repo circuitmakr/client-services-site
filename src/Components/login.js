@@ -15,26 +15,16 @@ function Auth(props) {
   let [p_logtype, setP_Logtype] = useState(false);
   let [c_logtype, setC_Logtype] = useState(false);
   
-  useEffect(() => {
-    setP_Logtype(!p_logtype);
-    console.log("use Effect!");
-  }, []);
-
 
   const provider_handleClick = () => {
-    // setP_Logtype(!p_logtype) 
-    setSel_Provider(!sel_Provider);
-    console.log("clicked p_log", p_logtype);
-    console.log("c_log", c_logtype);
+   
+    setSel_Provider(true);
     setUserType('provider')
+    setSel_Client(false);
   };
   const client_handleClick = () => {
-    setC_Logtype(false);
-    setP_Logtype(false);
-    setSel_Client(!sel_Client);
-    setC_Logtype(!c_logtype);
-    console.log("clicked c_log", c_logtype);
-    console.log("p_log", p_logtype);
+    setSel_Provider(false);
+    setSel_Client(true);
     setUserType('client')
   };
 
