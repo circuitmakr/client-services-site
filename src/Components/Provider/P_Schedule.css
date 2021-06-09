@@ -116,3 +116,19 @@ li{
 .ps_display_selections{
   margin-top: 1rem;
 }
+.ps_btn_refresh_container{
+  margin-top: -1.55rem;
+  float: right;
+  width: fit-content;
+  width: 4rem;
+  margin-right: 4.5rem;
+  height: 1.5rem;
+}
+.ps_btn_refresh{
+  width: 2rem;
+  height: 1.5rem;
+  border-radius: 5px 5px;
+  font-size: 12px;
+  color: black;
+  background-color: none;
+}

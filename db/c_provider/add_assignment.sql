@@ -5,4 +5,4 @@ INSERT INTO tbl_assignments(
   )
 VALUES ($1, $2, $3);
 SELECT*FROM tbl_assignments
-WHERE client_id = $1 & provider_id=$2
+WHERE client_id = $1 AND provider_id =$2;

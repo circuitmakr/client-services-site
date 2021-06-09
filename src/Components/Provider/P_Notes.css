@@ -64,6 +64,7 @@
   .p_CN_Assignment_display.client{
     margin-left: 27rem;
     height: 31%;
+    overflow:auto;
   }
   .p_CN_Assignment_adder.provider_input input{
     width: 100%;

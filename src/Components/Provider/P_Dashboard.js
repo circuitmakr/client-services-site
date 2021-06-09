@@ -16,7 +16,7 @@ function P_Dashboard(props) {
       </nav>
       <div className="tiles_container">
         <div className="greeting">
-          <h1>{`Hello, ${currentUser}`}</h1>
+          <h1>{`Welcome back, ${currentUser}`}</h1>
         </div>
         <div className="intro_text p_tile">
           <h2>Upcoming Appointments</h2>

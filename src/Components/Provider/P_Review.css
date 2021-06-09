@@ -33,3 +33,22 @@
     margin-top: 5rem;
     width: fit-content;
   }
+  .chartAnalysis{
+    width: 40%;
+    height: 11rem;
+    margin-top: 3rem;
+    margin-left: -13rem;
+  }
+  .p_CR_tile{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+.chartTxtAnalysis{
+  height: 11rem;
+  width: 44%;
+  margin-left: 4.5rem;
+  margin-top: 3rem;
+  overflow-y: auto;
+}

@@ -2,50 +2,87 @@ import "./P_Schedule.css";
 import React, { useEffect } from "react";
 import Header from "./P_Header";
 import { useState } from "react";
-import {useSelector} from 'react-redux'
-import {setUser} from '../../redux/authReducer'
+import { useSelector } from "react-redux";
+import { setUser } from "../../redux/authReducer";
 import axios from "axios";
 
 function Schedule() {
   const [schedule, setSchedule] = useState([]);
   const [calendar, setCalendar] = useState([]);
-  const [servernote, setServerNote] = useState([])
+  const [servernote, setServerNote] = useState([]);
+
   const user = useSelector((store) => store.authReducer.user.username);
-  const userID = useSelector(store => store.authReducer.user.provider_id);
+  const userID = useSelector((store) => store.authReducer.user.provider_id);
   useEffect(() => {
-    
     if (!schedule.find((item) => item.className === calendar)) {
-      setSchedule([...schedule, { id: schedule.length, name: calendar }])
-    }else{
-      alert('You already entered that time slot.')
+      setSchedule([...schedule, { id: schedule.length, name: calendar }]);
+    } else {
+      alert("You already entered that time slot.");
     }
   }, [calendar]);
 
-const handleSave =() =>{
-  const daysOftheWeek=['8:00 am - 9:00 am','9:00 am - 10:00 am', '10:00 am - 11:00 am','11:00 am - 12:00 pm','12:00 pm - 1:00 pm','1:00 pm - 2:00 pm','2:00 pm - 3:00 pm','3:00 pm - 4:00 pm','4:00 pm - 5:00 pm','5:00 pm - 6:00 pm','6:00 pm - 7:00 pm','7:00 pm - 8:00 pm','8:00 pm - 9:00 pm','9:00 pm - 10:00 pm']
-  let scheduleArr = []
-  scheduleArr = schedule.map((e)=>e.name)
-  const dates =scheduleArr
-  let calendarDate = dates[1]
-  let flagAvailable = true
-  const calendar =['*','*','*','*','*','*','*','*','*','*','*','*','*','*']
-  
-  for(let i =0; i<daysOftheWeek.length;i++){
-    let index = daysOftheWeek.indexOf(dates[i])
-    if(index>=0){
-    calendar.splice(index,1,dates[i])
+  const handleSave = () => {
+    const daysOftheWeek = [
+      "8:00 am - 9:00 am",
+      "9:00 am - 10:00 am",
+      "10:00 am - 11:00 am",
+      "11:00 am - 12:00 pm",
+      "12:00 pm - 1:00 pm",
+      "1:00 pm - 2:00 pm",
+      "2:00 pm - 3:00 pm",
+      "3:00 pm - 4:00 pm",
+      "4:00 pm - 5:00 pm",
+      "5:00 pm - 6:00 pm",
+      "6:00 pm - 7:00 pm",
+      "7:00 pm - 8:00 pm",
+      "8:00 pm - 9:00 pm",
+      "9:00 pm - 10:00 pm",
+    ];
+    let scheduleArr = [];
+    scheduleArr = schedule.map((e) => e.name);
+    const dates = scheduleArr;
+    let calendarDate = dates[1];
+    let flagAvailable = true;
+    const calendar = [
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+      "*",
+    ];
+
+    for (let i = 0; i < daysOftheWeek.length; i++) {
+      let index = daysOftheWeek.indexOf(dates[i]);
+      if (index >= 0) {
+        calendar.splice(index, 1, dates[i]);
+      }
     }
+    console.log(calendarDate, calendar);
+    axios
+      .post(`/api/provider/calendar/${userID}`, {
+        userID,
+        calendarDate,
+        calendar,
+        flagAvailable,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+    setSchedule([]);
+  };
+  const handleClear=()=>{
+    setSchedule([])
   }
-  console.log(calendarDate,calendar)
-   axios.post(`/api/provider/calendar/${userID}`,{userID, calendarDate, calendar, flagAvailable})
-   .then((res)=>{
-     console.log(res.data)
-  })
-    .catch(err=> console.log(err))
-  }
-
-
-
   return (
     <div>
       <nav>
@@ -60,13 +97,23 @@ const handleSave =() =>{
           <div className="ps_calendar_display">
             <div className="ps_calendar_header">
               <div className="ps_calendar_header_text">
-              <h3>Your Availability Schedule</h3>
+                <h3>Your Availability Schedule</h3>
               </div>
-              <div className='ps_btn_submit_container'>
-              <button onClick={handleSave} className="ps_btn_submit">Save</button>
+
+              <div className="ps_btn_submit_container">
+                <button onClick={handleSave} className="ps_btn_submit">
+                  Save
+                </button>
+              </div>
+              <div className="ps_btn_refresh_container">
+              
+                <button 
+                onClick={handleClear} className="ps_btn_refresh">
+                <i class="fa fa-ban"></i>
+                </button>
               </div>
             </div>
-            
+
             <hr />
             <div className="ps_display_selections">
               {schedule.map((item) => (
@@ -78,7 +125,6 @@ const handleSave =() =>{
             <div className="ps_grid-item ps_toggle">
               <div className="ps_timeslot_title">
                 <h3>Timeslot</h3>
-                
               </div>
             </div>
             <div className="ps_grid-item ps_toggle">
@@ -266,7 +312,6 @@ const handleSave =() =>{
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
