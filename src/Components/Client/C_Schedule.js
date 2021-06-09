@@ -28,9 +28,10 @@ function Schedule() {
       console.log(err)
     });
   },[]);
+
 console.log('provider calendar',providerCalendar)
-let updatedSchedule = providerCalendar.map((e)=>e.daily_schedule)
-console.log(updatedSchedule)
+  const {cal_date} = providerCalendar
+  console.log(cal_date)
   return (
     <div>
       <nav>
@@ -60,9 +61,11 @@ console.log(updatedSchedule)
             <div className="grid-item day-4 top">{daysOftheWeek[i+6]}</div>
             <div className="grid-item day-1 bottom">
               <ul className='day_1'>
-              {providerCalendar.map((e)=>
-                <li>{e.daily_schedule}</li>)}
+              {providerCalendar[0]?.daily_schedule.map((e,i)=>
+                <li>{e}</li>)}
               </ul>
+              <ul className='day_1'>
+              </ul>            
             </div>
             <div className="grid-item day-2 bottom"></div>
             <div className="grid-item day-3 bottom"></div>

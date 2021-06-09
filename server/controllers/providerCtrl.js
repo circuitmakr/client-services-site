@@ -53,4 +53,17 @@ module.exports = {
         res.status(500).send(err);
       });
   },
+  postAssignments: (req,res) =>{
+    console.log('I\'ve got an assignment post here!')
+    const {provider_id} = req.params;
+    const {client_id} = req.body;
+    const {providerList} = req.body
+    const db = req.app.get('db')
+    db.c_provider.add_assignment(client_id, provider_id, providerList)
+    .then((newAssignment)=>{
+      res.status(200).send(newAssignment);
+    }).catch(err=>{
+      res.status(500).send(err);
+    });
+  }
 };

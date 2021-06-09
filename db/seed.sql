@@ -82,7 +82,12 @@ CREATE TABLE tbl_arr_answers (
   q_date DATE DEFAULT CURRENT_DATE,
   answers VARCHAR[] 
 );
-
+CREATE TABLE tbl_assignments(
+ assignment_id SERIAL PRIMARY KEY,
+ client_id INT REFERENCES tbl_client(client_id),
+ provider_id INT REFERENCES tbl_provider(provider_id),
+ assignments VARCHAR[]
+);
 
 
 -- CREATE TEMP TABLE tbl_mock_calendar(LIKE tble_calendar INCLUDING DEFAULTS)

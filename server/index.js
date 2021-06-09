@@ -37,7 +37,6 @@ app.get('/auth/user', authCtrl.getUser)
 
 //client
 app.get('/api/client/quiz', clientCtrl.takeQuiz)
-app.put('/api/client/quiz/update/:client_id',clientCtrl.changeAnswer)
 app.post('/api/client/quiz/submit/:client_id', clientCtrl.submitQuiz)
 app.post('/api/client/provider/:client_id',clientCtrl.addProvider)
 // fix this POST -- use a query rather than PARAMS
@@ -50,5 +49,6 @@ app.post('/api/provider/calendar/:provider_id',providerCtrl.postCalendar)
 app.get('/api/provider/quiz/:client_id', providerCtrl.getQuizScores)
 app.put('/api/provider/calendar/:provider_id',providerCtrl.editCalendar)
 app.get('/api/provider/calendar/:provider_id',providerCtrl.getCalendar)
+app.post('/api/provider/assignments/:provider_id',providerCtrl.postAssignments)
 
 

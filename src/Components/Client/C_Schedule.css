@@ -63,12 +63,15 @@
 .grid-item.bottom{
   background-color: whitesmoke;
   border: 1px solid black;
- 
-  font-size:large;
+  align-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  text-align: center;
 }
 .grid-item.bottom ul{
   display: flex;
   flex-direction: column;
+
 }
 .s_calendar_nav{
   display: flex;
@@ -102,6 +105,8 @@
 .s_calendar_btn.right:hover{
   background-image: url('../../assets/arrow-alt-circle-right-solid.svg')
 }
-ul{
+.grid-item.bottom ul{
+  display: flex;
   list-style-type: none;
+  font-size: small;
 }

@@ -1,5 +1,14 @@
 {
     "configurations": [
+    {
+        "name": "Launch Program",
+        "program": "${workspaceFolder}/app.js",
+        "request": "launch",
+        "skipFiles": [
+            "<node_internals>/**"
+        ],
+        "type": "pwa-node"
+    },
         {
             "type": "pwa-msedge",
             "name": "https://localhost:3000",

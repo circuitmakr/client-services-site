@@ -266,9 +266,7 @@ const handleSave =() =>{
             </div>
           </div>
         </div>
-        <div className="ps_tile">
-          <h2>Upcoming Appointments</h2>
-        </div>
+
       </div>
     </div>
   );

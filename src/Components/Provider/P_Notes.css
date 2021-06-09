@@ -118,3 +118,23 @@
 .assignments tr td:last-child{
  width: 4.5rem;
 }
+.p_CN_Submit{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  width: 40px;
+  background-image: url('../../assets/arrow-alt-circle-right-solid.svg');
+  height: 40px;
+  font-size: 12px;
+  margin-top: 12rem;
+  margin-left: 24.7rem;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: whitesmoke;
+
+}
+.p_CN_Submit:hover{
+  background-image: url('../../assets/arrow-alt-circle-right-regular.svg');
+}
