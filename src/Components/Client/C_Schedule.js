@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {useDispatch} from 'react-redux'
-import setAppointment from "../../redux/appointmentReducer";
+import {setAppointment, setStatus } from "../../redux/appointmentReducer";
+
 
 function Schedule() {
   let [datecount, setDateCount] = useState(0);
@@ -56,10 +57,9 @@ let now = new Date()
   console.log('provider_calendar', providerCalendar)
 
   const handleAppt=()=>{
-    console.log('appDay',appday)
-    console.log('apptime',apptime)
-    console.log([appday,apptime])
-    dispatch(setAppointment([appday,apptime]))
+
+    dispatch(setAppointment({appday,apptime}))
+    dispatch(setStatus(true))
 
     setAppTime([])
     setAppDay([])

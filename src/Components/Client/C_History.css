@@ -70,3 +70,37 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+@media(max-width: 600px){
+  .header_main{
+    visibility: hidden;
+  }
+  .header_mobile{
+    visibility:visible;
+  }
+  p{
+    font-size: 10px;
+    overflow-y: auto;
+  }
+  h1{
+    font-size: 18px;
+  }
+  .hs_subtitle h3{
+    font-size: 12;
+  }
+  .hs_body_text{
+    width: 90%;
+    overflow-y: auto;
+  }
+  .hs_tile{
+    height:fit-content;
+    overflow-y: auto;
+  }
+  .hs_client_image{
+   margin-left:0;
+   visibility:hidden;
+   height: 20px;
+   width: 20px;
+   overflow-y: auto;
+  }
+
+}

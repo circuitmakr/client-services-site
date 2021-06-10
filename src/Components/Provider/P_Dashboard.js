@@ -6,13 +6,17 @@ import { setUser } from "../../redux/authReducer";
 import { useDispatch, useSelector } from "react-redux";
 import Header from './P_Header';
 import {user} from "../../redux/authReducer"
+import Header_mobile from './P_Header_mobile'
 
 function P_Dashboard(props) {
   const currentUser = useSelector(store=>store.authReducer.user.username)
   return (
     <div>
-      <nav>
+      <nav className='header_main'>
         <Header />
+      </nav>
+      <nav className='header_mobile'>
+        <Header_mobile/>
       </nav>
       <div className="tiles_container">
         <div className="greeting">
@@ -26,12 +30,6 @@ function P_Dashboard(props) {
         </div>
         <div className="p_tile">
           <h2>Availability Calendar</h2>
-        </div>
-        <div className="p_tile">
-          <h2>Assignments</h2>
-        </div>
-        <div className="p_tile">
-          <h2>Session Reviews</h2>
         </div>
       </div>
     </div>

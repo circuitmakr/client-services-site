@@ -1,9 +1,16 @@
 import Header from "./C_Header";
 import "./C_Progress.css";
+import C_Header_Mobile from './C_Header_mobile'
+
 function Progress() {
   return (
     <div>
+      <nav className='cp_header_main'>
       <Header />
+      </nav>
+      <nav className='cp_header_mobile'>
+      <C_Header_Mobile />
+      </nav>
       <div className="cp_tiles_container">
         <div className="cp_greeting">
           <h1>Progression and Growth</h1>

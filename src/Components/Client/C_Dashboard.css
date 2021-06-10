@@ -28,6 +28,7 @@
     height:16rem;
     border-radius: 10px 10px;
     border:1px solid white;
+
   }
   .greeting{
     margin-top: 5rem;
@@ -41,6 +42,7 @@
     height: 6rem;
     margin-left: auto;
     margin-right: auto;
+    width:fit-content;
   }
    .btn_booking,
    .btn_booking_link {
@@ -64,4 +66,40 @@
   .btn_booking:hover{
     background-color:#0B4F6C;
     color: whitesmoke;
+  }
+  .check_in_status.appt{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    align-self: center;
+    height: 6rem;
+    width: fit-content;
+    margin-left: 1rem;
+    margin-top: 0.25rem;
+    background-color: #48D7FE;
+    
+  }
+  .check_in_status.checked_in{
+    display: flex;
+    position: absolute;
+    align-self: center;
+    text-justify: auto;
+    height: 6rem;
+    width: fit-content;
+    margin-left: 26.5rem;
+    margin-top: 3rem;
+  }
+  .appointment_booked{
+    color: Black;
+    height: 8rem;
+  }
+  @media(max-width: 600px){
+    .header_main{
+      visibility: hidden;
+    }
+    .header_mobile{
+      visibility:visible;
+    }
   }

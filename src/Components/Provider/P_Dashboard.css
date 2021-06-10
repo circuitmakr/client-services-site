@@ -33,3 +33,14 @@
     margin-top: 5rem;
     width: fit-content;
   }
+  .header_mobile{
+    visibility:hidden;
+  }
+  @media(max-width: 600px){
+    .header_main{
+      visibility: hidden;
+    }
+    .header_mobile{
+      visibility:visible;
+    }
+  }

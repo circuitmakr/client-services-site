@@ -1,9 +1,16 @@
 import Header from "./C_Header";
 import "./C_History.css";
+import C_Header_mobile from './C_Header_mobile'
 function History() {
   return (
     <div>
+      <nav className='header_main'>
       <Header />
+      </nav>
+      <nav className='header_mobile'>
+      <C_Header_mobile />
+      </nav>
+
       <div className="hs_tiles_container">
         <div className="hs_greeting">
           <h1>Historical Health Perspective</h1>
