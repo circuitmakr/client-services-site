@@ -20,6 +20,9 @@ function P_Dashboard(props) {
         </div>
         <div className="intro_text p_tile">
           <h2>Upcoming Appointments</h2>
+          <div className='p_appointment_text'>
+            
+          </div>
         </div>
         <div className="p_tile">
           <h2>Availability Calendar</h2>

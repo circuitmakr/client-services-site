@@ -10,6 +10,7 @@ function Schedule() {
   const [schedule, setSchedule] = useState([]);
   const [calendar, setCalendar] = useState([]);
   const [servernote, setServerNote] = useState([]);
+  const [defaultvalue, setDefaultValue] = useState("0")
 
   const user = useSelector((store) => store.authReducer.user.username);
   const userID = useSelector((store) => store.authReducer.user.provider_id);
@@ -150,7 +151,7 @@ function Schedule() {
                 type="range"
                 min="0"
                 max="1"
-                defaultValue="0"
+                defaultValue={defaultvalue}
               />
             </div>
 

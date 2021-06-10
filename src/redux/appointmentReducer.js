@@ -5,7 +5,7 @@ const initialState = {
 // action type
 const SET_APPOINTMENT = "SET_APPOINTMENT";
 //action builder
-export function setAppointment(appointment) {
+export function setAppointment([[appointment]]) {
   return {
     type: SET_APPOINTMENT,
     payload: appointment,

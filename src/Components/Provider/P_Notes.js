@@ -4,15 +4,12 @@ import "./P_Notes.css";
 import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useRef } from "react";
 
 function Notes() {
   const [providerItem, setProviderItem] = useState();
   const [providerList, setProviderList] = useState([]);
   const [clientList, setClientList] = useState([]);
   const [buttonLabel, setButtonLabel] = useState("Add Assignment");
-  const inputRef = useRef();
-  const editLabel = 'Save Changes'
   const provider_id = useSelector(
     (store) => store.authReducer.user.provider_id
   );
@@ -25,11 +22,12 @@ function Notes() {
     setProviderList((pl) => (pl = [...providerList, providerItem]));
   };
   const handleDelete = (i) => {
-    console.log("id", i);
-    console.log("providerList item", providerList[i]);
     const filteredItems = providerList.filter((item, index) => index !== i);
-    console.log("filteredItems", filteredItems);
     setProviderList(filteredItems);
+  };
+  const handleSendtoClient = () => {
+    setClientList([]);
+    setProviderList([]);
   };
 
   const handleSubmit = () => {
@@ -43,17 +41,16 @@ function Notes() {
         console.log(res.data);
       });
   };
-
   const handleEdit = (i) => {
-    
     console.log("provider at index", providerList[i]);
     const editList = providerList.map((item, index) =>
       index === i ? providerItem : item
     );
     setProviderList(editList);
-    console.log('editList', editList)
+    console.log("editList", editList);
     setButtonLabel("Add Assignment");
   };
+  
   return (
     <div>
       <nav>
@@ -67,14 +64,13 @@ function Notes() {
           <h2>Assignments</h2>
           <div className="p_CN_Assignment_adder provider_input">
             <input
-              ref={inputRef}
               onChange={(e) => handleChange(e)}
               type="text"
               placeholder="Create Items Here..."
             ></input>
           </div>
           <div className="p_CN_Assignment_adder provider_btnContainer">
-            <button  onClick={handleOnClick}>
+            <button onClick={handleOnClick}>
               <h3>{`${buttonLabel}`}</h3>
             </button>
           </div>
@@ -91,7 +87,7 @@ function Notes() {
             <button>
               <h3>Remove All</h3>
             </button>
-            <button>
+            <button onClick={handleSendtoClient}>
               <h3>Send to Client</h3>
             </button>
           </div>
@@ -123,11 +119,12 @@ function Notes() {
             })}
           </div>
           <div className="p_CN_Assignment_display client">
-          <ul>
-            {clientList.map((e) => (
-                <li>{e.assignments}</li>
-            ))}
-          </ul>
+                <ul>
+                {clientList.map((item,i) => {
+                  return( 
+                  <li>{item.assignments}</li>)}
+                  )}
+                  </ul>
           </div>
           <div onClick={handleSubmit} className="p_CN_Submit">
             <i class="fa-solid fa-table-list"></i>
