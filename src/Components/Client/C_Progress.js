@@ -1,16 +1,17 @@
 import Header from "./C_Header";
 import "./C_Progress.css";
-import C_Header_Mobile from './C_Header_mobile'
+import C_HEADER_MOBILE from "./C_Header_mobile";
 
 function Progress() {
   return (
     <div>
-      <nav className='cp_header_main'>
-      <Header />
+      <nav className="cp_header_mobile">
+        <C_HEADER_MOBILE />
       </nav>
-      <nav className='cp_header_mobile'>
-      <C_Header_Mobile />
+      <nav className="cp_header_main">
+        <Header />
       </nav>
+
       <div className="cp_tiles_container">
         <div className="cp_greeting">
           <h1>Progression and Growth</h1>
@@ -56,18 +57,17 @@ function Progress() {
               <br />
             </div>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-                arcu risus, accumsan ac egestas vitae, semper nec tortor. Nam
-                eget vehicula ex. Praesent in accumsan neque. Ut ultricies ante
-                vitae lacus scelerisque, in vehicula nulla fringilla. Mauris
-                laoreet sed nisl quis ultricies. Aenean molestie sit amet elit
-                vitae rutrum. Integer porttitor rutrum semper. Nunc lobortis,
-                justo eget tempor luctus, magna augue faucibus augue, in
-                elementum augue ligula quis est. Sed facilisis rhoncus turpis,
-                ut elementum tellus dapibus sed. Sed ultrices eleifend
-                tincidunt. Cras mollis lectus vitae lorem mattis, ut molestie
-                nulla condimentum.
-              </p>           
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras arcu
+              risus, accumsan ac egestas vitae, semper nec tortor. Nam eget
+              vehicula ex. Praesent in accumsan neque. Ut ultricies ante vitae
+              lacus scelerisque, in vehicula nulla fringilla. Mauris laoreet sed
+              nisl quis ultricies. Aenean molestie sit amet elit vitae rutrum.
+              Integer porttitor rutrum semper. Nunc lobortis, justo eget tempor
+              luctus, magna augue faucibus augue, in elementum augue ligula quis
+              est. Sed facilisis rhoncus turpis, ut elementum tellus dapibus
+              sed. Sed ultrices eleifend tincidunt. Cras mollis lectus vitae
+              lorem mattis, ut molestie nulla condimentum.
+            </p>
           </div>
         </div>
       </div>

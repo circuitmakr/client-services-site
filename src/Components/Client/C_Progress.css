@@ -56,12 +56,13 @@ margin-left: 1rem;
 .cp_left_sidebar{
   margin-left: 1rem;
 }
+
 @media(max-width: 600px){
   .cp_header_main{
     visibility: hidden;
   }
   .cp_header_mobile{
-    visibility:visible;
+    visibility: visible;
   }
   .p_greeting{
     font-size: 12px;
@@ -100,5 +101,4 @@ margin-left: 1rem;
    width: 20px;
    overflow-y: auto;
   }
-
 }

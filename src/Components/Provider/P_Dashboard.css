@@ -29,6 +29,13 @@
     border-radius: 10px 10px;
     border:1px solid white;
   }
+  .p_calendar{
+    height: fit-content;
+  }
+  .ps_calendar_nav{
+    display: flex;
+    justify-content: center;
+  }
   .greeting{
     margin-top: 5rem;
     width: fit-content;
