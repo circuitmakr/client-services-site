@@ -57,10 +57,22 @@ let now = new Date()
   console.log('provider_calendar', providerCalendar)
 
   const handleAppt=()=>{
-
+    let provider_id = 29;
+    let client_id = 11;
+    let s_date = today
     dispatch(setAppointment({appday,apptime}))
     dispatch(setStatus(true))
-
+    axios.post(`/api/client/appointment/${provider_id}`,{
+      client_id: client_id, 
+      s_date: s_date, 
+      appointment: [appday,apptime]
+    })
+     .then((res)=>{
+       console.log(res.data)
+     })
+     .catch((err)=>{
+       console.log(err)
+     })
     setAppTime([])
     setAppDay([])
   }

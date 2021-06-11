@@ -74,7 +74,13 @@ let now = new Date()
         <div className="intro_text p_tile">
           <h2>Upcoming Appointments</h2>
           <div className='p_appointment_text'>
-            
+            <ul>
+              <li>Monday 2:00 pm - 3:00 pm with William Tell</li>
+              <li>Tuesday 2:00 pm - 3:00 pm with Ayn Rand</li>
+              <li>Wednesday 10:00 am - 11:00 am with Michael Bausch</li>
+              <li>Friday 2:00 pm - 3:00 pm with Franklin GTA V</li>
+              <li>Friday 3:00 pm - 4:00 pm with Jane Doe</li>
+            </ul>
           </div>
         </div>
         <div className="p_calendar p_tile">

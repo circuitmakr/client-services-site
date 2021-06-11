@@ -52,3 +52,11 @@
   margin-top: 3rem;
   overflow-y: auto;
 }
+@media(max-width: 600px){
+  .p_header_main{
+    visibility: hidden;
+  }
+  .p_header_mobile{
+    visibility:visible;
+  }
+}

@@ -2,12 +2,17 @@ import React from "react";
 import Header from "./P_Header";
 import "./P_Review.css";
 import Chart from "../Chart";
+import P_Header_mobile from './P_Header_mobile'
 function Review() {
   return (
     <div>
-      <nav>
+            <nav className='p_header_mobile'>
+        <P_Header_mobile />
+      </nav>
+      <nav className='p_header_main'>
         <Header />
       </nav>
+
       <div className="p_CR_tiles_container">
         <div className="p_CR_greeting">
           <h1>{`Outcomes`}</h1>

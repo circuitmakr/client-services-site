@@ -75,7 +75,7 @@ module.exports ={
     },
     deleteProvider: (req,res)=>{
         const db = req.app.get('db')
-        const{client_id} = req.params
+        const {client_id} = req.params
         console.log(client_id)
         const{provider_id}=req.body
         console.log(provider_id)
@@ -84,6 +84,21 @@ module.exports ={
             res.status(200).send(providers)
         }).catch((err)=>{
             res.status(404).send('Provider not found.')
+        })
+    },
+    addAppointment: (req,res)=>{
+        console.log("I've got an appointment request here!")
+        const db = req.app.get('db')
+        const {provider_id} = req.params;
+        const {client_id} = req.body;
+        const {s_date} = req.body;
+        const [appointment] = req.body;
+
+        db.c_client.add_appointment(provider_id, client_id, s_date, appointment)
+        .then((appointment)=>{
+            res.status(200).send(appointment)
+        }).catch((err)=>{
+            res.status(411).send(err)
         })
     }
 }

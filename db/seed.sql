@@ -36,7 +36,7 @@ CREATE TABLE tbl_sessions (
   provider_id INT REFERENCES tbl_provider(provider_id),
   client_id INT REFERENCES tbl_client(client_id),
   s_date DATE,
-  duration VARCHAR(150)
+  appointment VARCHAR[]
 );
 CREATE TABLE tbl_quiz (
   quiz_id SERIAL PRIMARY KEY,

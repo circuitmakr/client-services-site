@@ -81,14 +81,14 @@
     background-color: #48D7FE;
     
   }
-  .check_in_status.checked_in{
+ 
+  .check_in_status.checked_in h1{
     display: flex;
-    position: absolute;
-    align-self: center;
     text-justify: auto;
+    justify-self: center;
     height: 6rem;
+    margin-left: 43%;
     width: fit-content;
-    margin-left: 26.5rem;
     margin-top: 3rem;
   }
   .appointment_booked{
@@ -102,4 +102,5 @@
     .header_mobile{
       visibility:visible;
     }
+
   }

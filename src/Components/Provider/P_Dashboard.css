@@ -43,6 +43,17 @@
   .header_mobile{
     visibility:hidden;
   }
+  .p_appointment_text{
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 4rem;
+    margin-left: -16rem;
+    line-height: 1.5pc;
+    overflow-y: auto;
+    font-weight: 700;
+  }
   @media(max-width: 600px){
     .header_main{
       visibility: hidden;

@@ -1,11 +1,17 @@
 import LineChart from "../../Components/Chart";
-import Header from './P_Header'
-import './P_Client_Profile.css'
-
+import Header from "./P_Header";
+import "./P_Client_Profile.css";
+import P_HEADER_MOBILE from "./P_Header_mobile";
 function Client_Profile(props) {
   return (
     <div>
-      <Header />
+      <div className="pc_header_mobile">
+        <P_HEADER_MOBILE />
+      </div>
+      <div className="pc_header_main">
+        <Header />
+      </div>
+
       <div className="p_CP_tiles_container">
         <div className="p_CP_greeting">
           <h1>Historical Health Perspective</h1>
@@ -13,9 +19,9 @@ function Client_Profile(props) {
         <div className="p_CP_intro_text p_CP_tile">
           <div className="p_CP_text_tile">
             <div className="p_CP_body_text">
-            <div className="p_CP_client_image"></div>
+              <div className="p_CP_client_image"></div>
               <p>
-              <h3>Synopsis of Treatment</h3>
+                <h3>Synopsis of Treatment</h3>
                 <br />
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
                 arcu risus, accumsan ac egestas vitae, semper nec tortor. Nam
@@ -30,7 +36,6 @@ function Client_Profile(props) {
                 nulla condimentum.
               </p>
             </div>
-            
           </div>
         </div>
         <div className="p_CP_tile">
@@ -57,4 +62,4 @@ function Client_Profile(props) {
     </div>
   );
 }
-  export default Client_Profile;
+export default Client_Profile;

@@ -43,7 +43,7 @@ app.post('/api/client/provider/:client_id',clientCtrl.addProvider)
 app.post('/api/client/provider/:gender,:primary_service',clientCtrl.getProviders)
 app.delete('/api/client/provider/:client_id',clientCtrl.deleteProvider)
 app.get('/api/client/provider/calendar/:provider_id',clientCtrl.getCalendar)
-
+app.post('/api/client/appointment/:provider_id',clientCtrl.addAppointment)
 //provider
 app.post('/api/provider/calendar/:provider_id',providerCtrl.postCalendar)
 app.get('/api/provider/quiz/:client_id', providerCtrl.getQuizScores)

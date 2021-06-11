@@ -70,3 +70,11 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+@media(max-width: 600px){
+  .pc_header_main{
+    visibility: hidden;
+  }
+  .pc_header_mobile{
+    visibility:visible;
+  }
+}
