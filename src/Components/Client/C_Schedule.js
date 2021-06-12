@@ -44,7 +44,7 @@ let now = new Date()
       .then((res) => {
         setProviderCalendar(res.data);
         console.log('data', res.data)
-        const { daily_schedule } = res.data;
+        
       })
       .catch((err) => {
         console.log(err);
@@ -65,7 +65,7 @@ let now = new Date()
     axios.post(`/api/client/appointment/${provider_id}`,{
       client_id: client_id, 
       s_date: s_date, 
-      appointment: [appday,apptime]
+      appointment: {appday,apptime}
     })
      .then((res)=>{
        console.log(res.data)

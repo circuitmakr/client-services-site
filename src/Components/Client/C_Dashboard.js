@@ -13,8 +13,9 @@ import C_Header_Mobile from './C_Header_mobile'
 function C_Dashboard(props) {
   const current = useSelector((store) => store.authReducer.user.username);
   const appointments = useSelector((store) => store.appReducer);
+  const check_in = useSelector((store)=>store.quizReducer)
   console.log(appointments);
-
+  console.log(check_in)
   return (
     <div>
       <nav className='header_main'>
@@ -63,7 +64,16 @@ function C_Dashboard(props) {
         <div className="check_in tile">
           <h2> Check In Status</h2>
           <div className="check_in_status checked_in">
+            {check_in.completed?(
+              <div>
+              <h1>You're checked in for your next session.</h1>
+              </div>
+              ):(
+            <>
             <h1>Pending</h1>
+            </>
+            )}
+            
           </div>
         </div>
         <div className="footer"></div>

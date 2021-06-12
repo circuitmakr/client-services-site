@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "./C_Header";
 import Notes from "./C_Notes";
-import endQuiz from "../../redux/quizReducer"
+import  {setEndQuiz,setStartQuiz} from "../../redux/quizReducer"
 import session from "express-session";
 
 function Quiz() {
@@ -63,14 +63,15 @@ const handleToggle =() =>{
 const handleQuizComplete = () =>{
   let quiz_id =1;
   let q_date = new Date();
-  setCompleted(true)
-  axios.post(`/api/client/quiz/submit/${client_id}`,{ quiz_id, q_date, collectAnswers})
-  .then((res)=>{
-    console.log('res:', res)
-    dispatch(endQuiz(true))
-  })
+  dispatch(setStartQuiz([collectAnswers]))
+  dispatch(setEndQuiz(true))
+
+  // axios.post(`/api/client/quiz/submit/${client_id}`,{ quiz_id: quiz_id, q_date: q_date, collectAnswers: collectAnswers})
+  // .then((res)=>{
+  //   console.log('res:', res.body)
+  // })
 }
-console.log(collectAnswers)
+console.log()
 
 
   //const date = Date(mm/dd/yyyy)
