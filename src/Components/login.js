@@ -72,9 +72,7 @@ function Auth(props) {
     <div className="Login">
       <div className="main_container">
         <div className="app_header">
-          <Link to="/p_dashboard">
             <h2>Choose Account Type</h2>
-          </Link>
         </div>
         <div className="account_type">
           <button
