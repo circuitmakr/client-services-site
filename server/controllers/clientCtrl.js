@@ -89,14 +89,14 @@ module.exports ={
     addAppointment: (req,res)=>{
         console.log("I've got an appointment request here!")
         const db = req.app.get('db')
-        const {provider_id} = req.params;
+        const {provider_id} = req.body;
         const {client_id} = req.body;
         const {s_date} = req.body;
-        const [appointment] = req.body;
+        const {appointment} = req.body;
 
         db.c_client.add_appointment(provider_id, client_id, s_date, appointment)
         .then((appointment)=>{
-            res.status(200).send(appointment)
+            res.status(200).send('Your appointment has been sent.')
         }).catch((err)=>{
             res.status(411).send(err)
         })

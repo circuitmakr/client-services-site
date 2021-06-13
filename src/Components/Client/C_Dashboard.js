@@ -45,6 +45,7 @@ function C_Dashboard(props) {
                       <div>
                        <h2><li>{e.apptime}</li></h2> 
                        <h3><li>{e.appday}</li></h3> 
+                       <h2><li>{e.appdate}</li></h2> 
                       </div>
                     );
                   })}

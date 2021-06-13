@@ -3,24 +3,26 @@ import Header from "./C_Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import {useDispatch} from 'react-redux'
-import {setAppointment, setStatus } from "../../redux/appointmentReducer";
-
+import { useDispatch } from "react-redux";
+import { setAppointment, setStatus } from "../../redux/appointmentReducer";
 
 function Schedule() {
   let [datecount, setDateCount] = useState(0);
   const [providerCalendar, setProviderCalendar] = useState([]);
+  const [server_res, setServer_Res] = useState("");
   const usersession = "Session Planning";
   let today = new Date();
   const day = ["Mon", "Tues", "Wed", "Thurs", "Fri"];
   const [appday, setAppDay] = useState("");
   const [apptime, setAppTime] = useState("");
-  const dispatch = useDispatch()
+  const [appdate, setAppDate] = useState("");
+  const dispatch = useDispatch();
 
   const handleLink = (e) => {
     e.preventDefault();
-    setAppDay(e.target.name);
-    setAppTime(e.target.id);
+    setAppTime(e.target.name);
+    setAppDay(e.target.id);
+    setAppDate(e.target.title);
   };
   const daysOftheWeek = [
     "Sunday",
@@ -31,20 +33,19 @@ function Schedule() {
     "Friday",
     "Saturday",
   ];
-  let i = 0
-  
-  today = `${day[today.getDay()-1]} ${today.getMonth() + 1}/${
+  let i = 0;
+
+  today = `${day[today.getDay() - 1]} ${today.getMonth() + 1}/${
     today.getDay() - 1
   }/${today.getFullYear()}`;
-let now = new Date()
+  let now = new Date();
   useEffect(() => {
     let provider_id = 29;
     axios
       .get(`/api/client/provider/calendar/${provider_id}`)
       .then((res) => {
         setProviderCalendar(res.data);
-        console.log('data', res.data)
-        
+        console.log("data", res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -52,30 +53,35 @@ let now = new Date()
   }, []);
 
   console.log("provider calendar", providerCalendar);
-  const { cal_date } = providerCalendar;
-  console.log(cal_date);
-  console.log('provider_calendar', providerCalendar)
+  const calendarDate = providerCalendar.map((e) =>
+    e.cal_date.substring(0, e.cal_date.search("T"))
+  );
+  console.log("date", calendarDate);
+  console.log("provider_calendar", providerCalendar);
 
-  const handleAppt=()=>{
+  const handleAppt = () => {
     let provider_id = 29;
     let client_id = 11;
-    let s_date = today
-    dispatch(setAppointment({appday,apptime}))
-    dispatch(setStatus(true))
-    axios.post(`/api/client/appointment/${provider_id}`,{
-      client_id: client_id, 
-      s_date: s_date, 
-      appointment: {appday,apptime}
-    })
-     .then((res)=>{
-       console.log(res.data)
-     })
-     .catch((err)=>{
-       console.log(err)
-     })
-    setAppTime([])
-    setAppDay([])
-  }
+    let s_date = `{${appdate}}`;
+    dispatch(setAppointment({ appday, apptime, appdate }));
+    dispatch(setStatus(true));
+    axios
+      .post(`/api/client/appointment/${provider_id}`, {
+        provider_id,
+        client_id: client_id,
+        s_date: s_date,
+        appointment: `{{${appday}, ${apptime}}}`,
+      })
+      .then((res) => {
+        setServer_Res(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setAppTime([]);
+    setAppDay([]);
+    setAppDate([]);
+  };
   return (
     <div>
       <nav>
@@ -109,13 +115,41 @@ let now = new Date()
             </nav>
           </div>
           <div className="s_calendar">
-            <div className="grid-item day-1 top">{daysOftheWeek[i]}<br/></div>
-            <div className="grid-item day-2 top">{daysOftheWeek[i + 1]}</div>
-            <div className="grid-item day-3 top">{daysOftheWeek[i + 2]}</div>
-            <div className="grid-item day-4 top">{daysOftheWeek[i + 3]}</div>
-            <div className="grid-item day-5 top">{daysOftheWeek[i + 4]}</div>
-            <div className="grid-item day-6 top">{daysOftheWeek[i + 5]}</div>
-            <div className="grid-item day-4 top">{daysOftheWeek[i + 6]}</div>
+            <div className="grid-item day-1 top">
+              {daysOftheWeek[datecount]}
+              <br />
+              {calendarDate[datecount]}
+            </div>
+            <div className="grid-item day-2 top">
+              {daysOftheWeek[datecount + 1]}
+              <br />
+              {calendarDate[datecount + 1]}
+            </div>
+            <div className="grid-item day-3 top">
+              {daysOftheWeek[datecount + 2]}
+              <br />
+              {calendarDate[datecount + 2]}
+            </div>
+            <div className="grid-item day-4 top">
+              {daysOftheWeek[datecount + 3]}
+              <br />
+              {calendarDate[datecount + 3]}
+            </div>
+            <div className="grid-item day-5 top">
+              {daysOftheWeek[datecount + 4]}
+              <br />
+              {calendarDate[datecount + 4]}
+            </div>
+            <div className="grid-item day-6 top">
+              {daysOftheWeek[datecount + 5]}
+              <br />
+              {calendarDate[datecount + 5]}
+            </div>
+            <div className="grid-item day-4 top">
+              {daysOftheWeek[datecount + 6]}
+              <br />
+              {calendarDate[datecount + 6]}
+            </div>
             <div className="grid-item day-1 bottom">
               <ul className="day_1">
                 {providerCalendar[0]?.daily_schedule.map((e, i) => (
@@ -124,6 +158,7 @@ let now = new Date()
                       href="/"
                       onClick={(time) => handleLink(time)}
                       name={e}
+                      title={`${calendarDate[datecount]}`}
                       id="Sunday"
                     >
                       {" "}
@@ -142,6 +177,7 @@ let now = new Date()
                       href="/"
                       onClick={(time) => handleLink(time)}
                       name={e}
+                      title={`${calendarDate[datecount + 1]}`}
                       id="Monday"
                     >
                       {" "}
@@ -153,14 +189,14 @@ let now = new Date()
               <ul className="day_2"></ul>
             </div>
             <div className="grid-item day-3 bottom">
-
-            <ul className="day_3">
+              <ul className="day_3">
                 {providerCalendar[2]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
                       href="/"
                       onClick={(time) => handleLink(time)}
                       name={e}
+                      title={`${calendarDate[datecount + 2]}`}
                       id="Tuesday"
                     >
                       {" "}
@@ -172,14 +208,14 @@ let now = new Date()
               <ul className="day_3"></ul>
             </div>
             <div className="grid-item day-4 bottom">
-
-            <ul className="day_4">
+              <ul className="day_4">
                 {providerCalendar[2]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
                       href="/"
                       onClick={(time) => handleLink(time)}
                       name={e}
+                      title={`${calendarDate[datecount + 3]}`}
                       id="Wednesday"
                     >
                       {" "}
@@ -191,14 +227,14 @@ let now = new Date()
               <ul className="day_4"></ul>
             </div>
             <div className="grid-item day-5 bottom">
-
-            <ul className="day_5">
+              <ul className="day_5">
                 {providerCalendar[3]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
                       href="/"
                       onClick={(time) => handleLink(time)}
                       name={e}
+                      title={`${calendarDate[datecount + 4]}`}
                       id="Thursday"
                     >
                       {" "}
@@ -210,13 +246,14 @@ let now = new Date()
               <ul className="day_5"></ul>
             </div>
             <div className="grid-item day-6 bottom">
-            <ul className="day_6">
+              <ul className="day_6">
                 {providerCalendar[4]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
                       href="/"
                       onClick={(time) => handleLink(time)}
                       name={e}
+                      title={`${calendarDate[datecount + 5]}`}
                       id="Friday"
                     >
                       {" "}
@@ -228,14 +265,14 @@ let now = new Date()
               <ul className="day_6"></ul>
             </div>
             <div className="grid-item day-7 bottom">
-
-            <ul className="day_7">
+              <ul className="day_7">
                 {providerCalendar[5]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
                       href="/"
                       onClick={(time) => handleLink(time)}
                       name={e}
+                      title={`${calendarDate[datecount + 6]}`}
                       id="Saturday"
                     >
                       {" "}
@@ -245,30 +282,27 @@ let now = new Date()
                 ))}
               </ul>
               <ul className="day_7"></ul>
-
             </div>
           </div>
         </div>
 
         <div className="s_tile">
           <h2>Book an Appointment</h2>
-          <div className='s_appointment'>
-            <div className='s_form_column first'>
-              <div className='s_Month'>
-                  <span>{apptime}</span>
-                </div>
+          <div className="s_appointment">
+            <div className="s_form_column first">
+              <div className="s_Month">
+                <span>{apptime}</span>
+              </div>
             </div>
-            <div className='s_form_column second'>
+            <div className="s_form_column second">
               <span>{appday}</span>
+              <div className="s_txtspr"></div>
+              <span>{appdate}</span>
             </div>
-            <div className='s_form_column third'>
+            <div className="s_form_column third">
               <button onClick={handleAppt}>Book Appointment</button>
             </div>
           </div>
-
-        </div>
-        <div className='footer'>
-
         </div>
       </div>
     </div>
