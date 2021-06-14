@@ -10,10 +10,7 @@ const clientCtrl = require('./controllers/clientCtrl')
 const providerCtrl = require('./controllers/providerCtrl')
 
 const {SESSION_SECRET, CONNECTION_STRING, SERVER_PORT} = process.env
-app.use(express.static(__dirname + '/../build'))
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname, '../build/index.html'))
-})
+
 
 
 app.use(session({
@@ -57,4 +54,7 @@ app.get('/api/provider/calendar/:provider_id',providerCtrl.getCalendar)
 app.post('/api/provider/assignments/:provider_id',providerCtrl.postAssignments)
 app.get(`/api/provider/appointments/:provider_id`,providerCtrl.getAppointments);
 
-
+app.use(express.static(__dirname + '/../build'))
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
