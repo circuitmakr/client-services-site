@@ -4,12 +4,17 @@ const app = express();
 app.use(express.json());
 const massive = require('massive');
 const session = require('express-session');
-
+const path = require('path')
 const authCtrl = require('./controllers/authCtrl')
 const clientCtrl = require('./controllers/clientCtrl')
 const providerCtrl = require('./controllers/providerCtrl')
 
 const {SESSION_SECRET, CONNECTION_STRING, SERVER_PORT} = process.env
+app.use(express.static(__dirname + '/../build'))
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
+
 
 app.use(session({
     secret: SESSION_SECRET,
