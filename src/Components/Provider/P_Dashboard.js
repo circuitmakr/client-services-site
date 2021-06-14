@@ -40,7 +40,7 @@ function P_Dashboard(props) {
     "Saturday",
   ];
   let i = 0;
-  let now = new Date();
+  ;
   useEffect(() => {
     axios
       .get(`/api/client/provider/calendar/${provider_id}`)
@@ -56,7 +56,7 @@ function P_Dashboard(props) {
       console.log("bookings", res.data);
     });
   }, []);
- 
+ const now = new Date()
   return (
     <div>
       <nav className="header_main">
@@ -72,7 +72,8 @@ function P_Dashboard(props) {
         <div className="intro_text p_tile">
           <h2>Upcoming Appointments</h2>
           <div className="p_appointment_text">
-          {bookings.map((e) => e.cal_date)}
+          {bookings.map((e) => 
+          <li>{e.s_date.substring(0,e.s_date.search("T"))} at {e.appointment}  {daysOftheWeek[(e.s_date)]}   </li>)}
           </div>
         </div>
         <div className="p_calendar p_tile">
