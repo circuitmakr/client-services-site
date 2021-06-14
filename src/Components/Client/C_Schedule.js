@@ -11,7 +11,7 @@ function Schedule() {
   const [providerCalendar, setProviderCalendar] = useState([]);
   const [server_res, setServer_Res] = useState("");
   const usersession = "Session Planning";
-  let today = new Date();
+ 
   const day = ["Mon", "Tues", "Wed", "Thurs", "Fri"];
   const [appday, setAppDay] = useState("");
   const [apptime, setAppTime] = useState("");
@@ -34,11 +34,10 @@ function Schedule() {
     "Saturday",
   ];
   let i = 0;
-
-  today = `${day[today.getDay() - 1]} ${today.getMonth() + 1}/${
-    today.getDay() - 1
-  }/${today.getFullYear()}`;
-  let now = new Date();
+  let today = new Date();
+  today = `${today.getDay() - 1} ${today.getMonth() + 1}/${today.getDate() + 1}/${today.getFullYear()}`;
+  console.log('today', today)
+  
   useEffect(() => {
     let provider_id = 29;
     axios
@@ -51,13 +50,14 @@ function Schedule() {
         console.log(err);
       });
   }, []);
-
+  const newDate= new Date();
   console.log("provider calendar", providerCalendar);
   const calendarDate = providerCalendar.map((e) =>
     e.cal_date.substring(0, e.cal_date.search("T"))
   );
   console.log("date", calendarDate);
   console.log("provider_calendar", providerCalendar);
+  console.log('day', newDate.getDay('2021,06,03'))
 
   const handleAppt = () => {
     let provider_id = 29;

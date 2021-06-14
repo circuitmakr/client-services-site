@@ -19,7 +19,7 @@ module.exports = {
      .then(update =>{
         res.status(200).send(update)
         .cath(err=>{
-           res.status(500).send(err)
+           res.status(417).send(err)
         })
      })
   },
@@ -30,7 +30,7 @@ module.exports = {
     .then(calendar=>{
        res.status(200).send(calendar)
       }).then(err=>{
-         res.status(500).send(err);
+         res.status(417).send(err);
       })
   },
   postCalendar: (req, res) => {
@@ -50,7 +50,7 @@ module.exports = {
       })
       .catch((err) => {
         console.log(err)
-        res.status(500).send(err);
+        res.status(417).send(err);
       });
   },
   postAssignments: (req,res) =>{
@@ -63,7 +63,19 @@ module.exports = {
     .then((newAssignment)=>{
       res.status(200).send(newAssignment);
     }).catch(err=>{
-      res.status(500).send(err);
+      res.status(417).send(err);
+    });
+  },
+  getAppointments: (req,res) => {
+    console.log('I\'ve got an appointment request here!')
+    const {provider_id} = req.params;
+    const db = req.app.get('db')
+    db.c_provider.get_appointments(provider_id)
+    .then((assignmentList)=>{
+      res.status(200).send(assignmentList)
+    })
+    .catch((err)=>{
+      res.status(417).send(err);
     });
   }
 };

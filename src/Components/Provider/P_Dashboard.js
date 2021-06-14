@@ -4,13 +4,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { setUser } from "../../redux/authReducer";
 import { useDispatch, useSelector } from "react-redux";
-import Header from './P_Header';
-import {user} from "../../redux/authReducer"
-import Header_mobile from './P_Header_mobile'
-import{Link} from 'react-router-dom'
+import Header from "./P_Header";
+import { user } from "../../redux/authReducer";
+import Header_mobile from "./P_Header_mobile";
+import { Link } from "react-router-dom";
 
 function P_Dashboard(props) {
-  const currentUser = useSelector(store=>store.authReducer.user.username)
+  const currentUser = useSelector((store) => store.authReducer.user.username);
+  const provider_id = useSelector(
+    (store) => store.authReducer.user.provider_id
+  );
+
   let [datecount, setDateCount] = useState(0);
   const [providerCalendar, setProviderCalendar] = useState([]);
   const usersession = "Session Planning";
@@ -18,7 +22,8 @@ function P_Dashboard(props) {
   const day = ["Mon", "Tues", "Wed", "Thurs", "Fri"];
   const [appday, setAppDay] = useState("");
   const [apptime, setAppTime] = useState("");
-  const dispatch = useDispatch()
+  const [bookings, setBookings] = useState([]);
+  const dispatch = useDispatch();
 
   const handleLink = (e) => {
     e.preventDefault();
@@ -34,38 +39,31 @@ function P_Dashboard(props) {
     "Friday",
     "Saturday",
   ];
-  let i = 0
-  
-  today = `${day[today.getDay()-1]} ${today.getMonth() + 1}/${
-    today.getDay() - 1
-  }/${today.getFullYear()}`;
-let now = new Date()
+  let i = 0;
+  let now = new Date();
   useEffect(() => {
-    let provider_id = 29;
     axios
       .get(`/api/client/provider/calendar/${provider_id}`)
       .then((res) => {
         setProviderCalendar(res.data);
-        console.log('data', res.data)
-        const { daily_schedule } = res.data;
+        console.log("data", res.data);
       })
       .catch((err) => {
         console.log(err);
       });
+    axios.get(`/api/provider/appointments/${provider_id}`).then((res) => {
+      setBookings(res.data);
+      console.log("bookings", res.data);
+    });
   }, []);
-
-  console.log("provider calendar", providerCalendar);
-  const { cal_date } = providerCalendar;
-  console.log(cal_date);
-  console.log('provider_calendar', providerCalendar)
-
+ 
   return (
     <div>
-      <nav className='header_main'>
+      <nav className="header_main">
         <Header />
       </nav>
-      <nav className='header_mobile'>
-        <Header_mobile/>
+      <nav className="header_mobile">
+        <Header_mobile />
       </nav>
       <div className="tiles_container">
         <div className="greeting">
@@ -73,39 +71,36 @@ let now = new Date()
         </div>
         <div className="intro_text p_tile">
           <h2>Upcoming Appointments</h2>
-          <div className='p_appointment_text'>
-            <ul>
-              <li>Monday 2:00 pm - 3:00 pm with William Tell</li>
-              <li>Tuesday 2:00 pm - 3:00 pm with Ayn Rand</li>
-              <li>Wednesday 10:00 am - 11:00 am with Michael Bausch</li>
-              <li>Friday 2:00 pm - 3:00 pm with Franklin GTA V</li>
-              <li>Friday 3:00 pm - 4:00 pm with Jane Doe</li>
-            </ul>
+          <div className="p_appointment_text">
+          {bookings.map((e) => e.cal_date)}
           </div>
         </div>
         <div className="p_calendar p_tile">
           <h2>Availability Calendar</h2>
           <nav className="ps_calendar_nav">
-              <div
-                onClick={() =>
-                  setDateCount(datecount > 0 ? datecount - 1 : (datecount = 0))
-                }
-                className="s_calendar_btn left"
-              ></div>
-              <div
-                onClick={() => setDateCount(0)}
-                className="s_calendar_btn today"
-              >
-                <i class="fa fa-calendar-day"></i>
-              </div>
-              <div
-                onClick={() => setDateCount(datecount + 1)}
-                className="s_calendar_btn right"
-              ></div>
-            </nav>
-        
+            <div
+              onClick={() =>
+                setDateCount(datecount > 0 ? datecount - 1 : (datecount = 0))
+              }
+              className="s_calendar_btn left"
+            ></div>
+            <div
+              onClick={() => setDateCount(0)}
+              className="s_calendar_btn today"
+            >
+              <i class="fa fa-calendar-day"></i>
+            </div>
+            <div
+              onClick={() => setDateCount(datecount + 1)}
+              className="s_calendar_btn right"
+            ></div>
+          </nav>
+
           <div className="s_calendar">
-            <div className="grid-item day-1 top">{daysOftheWeek[i]}<br/></div>
+            <div className="grid-item day-1 top">
+              {daysOftheWeek[i]}
+              <br />
+            </div>
             <div className="grid-item day-2 top">{daysOftheWeek[i + 1]}</div>
             <div className="grid-item day-3 top">{daysOftheWeek[i + 2]}</div>
             <div className="grid-item day-4 top">{daysOftheWeek[i + 3]}</div>
@@ -149,8 +144,7 @@ let now = new Date()
               <ul className="day_2"></ul>
             </div>
             <div className="grid-item day-3 bottom">
-
-            <ul className="day_3">
+              <ul className="day_3">
                 {providerCalendar[2]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
@@ -168,8 +162,7 @@ let now = new Date()
               <ul className="day_3"></ul>
             </div>
             <div className="grid-item day-4 bottom">
-
-            <ul className="day_4">
+              <ul className="day_4">
                 {providerCalendar[2]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
@@ -187,8 +180,7 @@ let now = new Date()
               <ul className="day_4"></ul>
             </div>
             <div className="grid-item day-5 bottom">
-
-            <ul className="day_5">
+              <ul className="day_5">
                 {providerCalendar[3]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
@@ -206,7 +198,7 @@ let now = new Date()
               <ul className="day_5"></ul>
             </div>
             <div className="grid-item day-6 bottom">
-            <ul className="day_6">
+              <ul className="day_6">
                 {providerCalendar[4]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
@@ -224,8 +216,7 @@ let now = new Date()
               <ul className="day_6"></ul>
             </div>
             <div className="grid-item day-7 bottom">
-
-            <ul className="day_7">
+              <ul className="day_7">
                 {providerCalendar[5]?.daily_schedule.map((e, i) => (
                   <li>
                     <Link
@@ -245,11 +236,9 @@ let now = new Date()
           </div>
         </div>
 
- 
-        <div className='footer'>
-        </div>
+        <div className="footer"></div>
       </div>
-      </div>
+    </div>
   );
 }
 export default P_Dashboard;

@@ -50,5 +50,6 @@ app.get('/api/provider/quiz/:client_id', providerCtrl.getQuizScores)
 app.put('/api/provider/calendar/:provider_id',providerCtrl.editCalendar)
 app.get('/api/provider/calendar/:provider_id',providerCtrl.getCalendar)
 app.post('/api/provider/assignments/:provider_id',providerCtrl.postAssignments)
+app.get(`/api/provider/appointments/:provider_id`,providerCtrl.getAppointments);
 
 
