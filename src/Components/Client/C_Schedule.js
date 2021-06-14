@@ -94,7 +94,6 @@ function Schedule() {
         <div className="s_intro_text s_tile">
           <h2>Check Availabilities</h2>
           <div className="s_current_date">
-            {/* <h4>{`Today is ${day[today.getDay()-1]} ${today.getMonth()+1}/${today.getDay()-1}/${today.getFullYear()}`}</h4> */}
             <nav className="s_calendar_nav">
               <div
                 onClick={() =>

@@ -90,19 +90,20 @@ CREATE TABLE tbl_assignments(
 );
 
 
+
+-- UPDATE some_table
+-- SET some_col = 'NEW VALUE GOES HERE!'
+-- WHERE some_condition;
+
 -- CREATE TEMP TABLE tbl_mock_calendar(LIKE tble_calendar INCLUDING DEFAULTS)
 -- ON COMMIT DROP
 
 -- INSERT INTO tble_mock_calendar DEFAULT VALUES RETURNING*
 
--- INSERT INTO tbl_calendar(
---   provider_id, cal_date,time_range_01,time_range_02,time_range_03,time_range_04,time_range_05,time_range_06,time_range_07,time_range_08,time_range_09,time_range_10,time_range_11,time_range_12, 
---   time_range_13,time_range_14,available)
---   VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17);
 
 --DELETE TABLE DATA
-DELETE FROM tbl_provider 
-WHERE name IS NOT NULL;
+-- DELETE FROM tbl_provider 
+-- WHERE name IS NOT NULL;
 
 -- ALTER TABLE z
 -- RENAME COLUMN x TO y;

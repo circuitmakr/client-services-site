@@ -73,7 +73,15 @@ function P_Dashboard(props) {
           <h2>Upcoming Appointments</h2>
           <div className="p_appointment_text">
           {bookings.map((e) => 
-          <li>{e.s_date.substring(0,e.s_date.search("T"))} at {e.appointment}  {daysOftheWeek[(e.s_date)]}   </li>)}
+          <table className='p_table_bookings'>
+            <tr>
+              <td className='p_tblDate'>{e.s_date.substring(0,e.s_date.search("T"))}</td>
+              <td className='p_tblWord sm'> at </td>
+              <td className='p_tblTime'>{e.appointment}</td>
+              <td className='p_tblWord'> with </td>
+              <td className='p_tblName'>{e.name}</td>
+            </tr>
+          </table>)}
           </div>
         </div>
         <div className="p_calendar p_tile">
