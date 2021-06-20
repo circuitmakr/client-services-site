@@ -52,7 +52,7 @@ function Schedule() {
   }, []);
   const newDate= new Date();
   console.log("provider calendar", providerCalendar);
-  const calendarDate = providerCalendar.map((e) =>
+  const calendarDate = providerCalendar?.map((e) =>
     e.cal_date.substring(0, e.cal_date.search("T"))
   );
   console.log("date", calendarDate);
