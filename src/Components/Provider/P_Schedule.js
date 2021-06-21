@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import Header from "./P_Header";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { setUser } from "../../redux/authReducer";
 import axios from "axios";
 
 function Schedule() {
@@ -11,6 +10,9 @@ function Schedule() {
   const [calendar, setCalendar] = useState([]);
   const [servernote, setServerNote] = useState([]);
   const [defaultvalue, setDefaultValue] = useState("0")
+
+
+  
 
   const user = useSelector((store) => store.authReducer.user.username);
   const userID = useSelector((store) => store.authReducer.user.provider_id);
@@ -20,7 +22,12 @@ function Schedule() {
     } else {
       alert("You already entered that time slot.");
     }
+
   }, [calendar]);
+
+  useEffect(()=>{
+    setDefaultValue(`${new Date()}`)
+  },[])
 
   const handleSave = () => {
     const daysOftheWeek = [
@@ -84,6 +91,7 @@ function Schedule() {
   const handleClear=()=>{
     setSchedule([])
   }
+
   return (
     <div>
       <nav>
@@ -138,6 +146,8 @@ function Schedule() {
                 }}
                 type="date"
                 className="ps_date_picker ps_toggle"
+                value = {defaultvalue}
+              
               />
             </div>
             <div className="ps_grid-item ps_toggle">Closed | Open</div>
