@@ -40,7 +40,7 @@ function Auth(props) {
           props.history.push('/c_dashboard')
         }
         if(usertype ==='provider'){
-          props.history.push('/p_dashboard')
+          props.history.push('/provider/dashboard')
         }
       }).catch(err => console.log(err))
     }

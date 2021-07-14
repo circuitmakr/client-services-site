@@ -132,3 +132,13 @@ li{
   color: black;
   background-color: none;
 }
+@media (min-width: 1500px){
+  .ps_calendar_display{
+    margin-left: 50rem;
+    height: 53%;
+  }
+  .ps_btn_refresh_container{
+    margin-right: 6.5rem;
+  }
+
+}

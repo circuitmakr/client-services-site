@@ -139,3 +139,13 @@
 .p_CN_Submit:hover{
   background-image: url('../../assets/arrow-alt-circle-right-regular.svg');
 }
+@media (min-width: 1500px){
+  .p_CN_Assignment_display.client,
+  .p_CN_Assignment_adder.client,
+  .p_CN_Assignment_adder.client_btnContainer{
+    margin-left: 40rem;
+  }
+  .p_CN_Submit{
+  margin-left: 36rem;
+  }
+}

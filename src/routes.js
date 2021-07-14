@@ -24,10 +24,10 @@ export default (
         <Route path='/c_quiz' component={C_Quiz} />
         <Route path='/c_history' component={C_History} />
         <Route path='/c_progress' component={C_Progress} />
-        <Route path='/p_dashboard' component={P_Dashboard} />
-        <Route path='/p_schedule' component={P_Schedule} />
-        <Route path='/p_notes' component={P_Notes} />
-        <Route path='/p_history' component={P_Profile} />
-        <Route path='/p_progress' component={P_Progress} />
+        <Route path='/provider/dashboard' component={P_Dashboard} />
+        <Route path='/provider/calendar' component={P_Schedule} />
+        <Route path='/provider/assignments' component={P_Notes} />
+        <Route path='/provider/client_profiles' component={P_Profile} />
+        <Route path='/provider/client_progress' component={P_Progress} />
     </Switch>
 );

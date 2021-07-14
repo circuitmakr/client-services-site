@@ -17,11 +17,11 @@ function P_Header(props) {
       <div className="p_sub_container">
         <nav className="p_links">
         <div onclick={handleLogout} className='p_logo'></div>
-        <Link to='/p_dashboard'>Home</Link>
-        <Link to='/p_schedule'>Calendar</Link>
-        <Link to='/p_notes'>Assignments</Link>
-        <Link to='/p_history'>Client Profiles</Link>
-        <Link to='/p_progress'>Client Progress</Link>
+        <Link to='/provider/dashboard'>Home</Link>
+        <Link to='/provider/calendar'>Calendar</Link>
+        <Link to='/provider/assignments'>Assignments</Link>
+        <Link to='/provider/client_profiles'>Client Profiles</Link>
+        <Link to='/provider/client_progress'>Client Progress</Link>
         <Link to='/' onclick={handleLogout}>Logout</Link>
         </nav>
         <div className="p_avatar">
